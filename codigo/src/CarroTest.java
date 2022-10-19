@@ -3,6 +3,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
+    /*
+     * PLANO DE TESTES DA CLASSE CARRO
+     * - Calculo de IPVA ✔️
+     * - Calculo de seguro ✔️
+     */
+
 public class CarroTest {
     
     static Carro novoCarro;
