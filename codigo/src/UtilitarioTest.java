@@ -12,14 +12,12 @@ public class UtilitarioTest {
      */
         
     static Utilitario novoUtilitario;
-    static String placa = "XXX0X00";
-    static double valorDeVenda = 90000.00;
-    static int kmRodados = 1000;
+    static String[] dados = {"Utilitario", "GYE-9781", "40k A7JsLJ AT Bv0967", "90000", "1000", "2010", "Azul"};
     static int tanque = 80;
 
     @BeforeEach
     public void init() {
-        novoUtilitario = new Utilitario(placa, valorDeVenda, kmRodados, tanque);
+        novoUtilitario = new Utilitario(dados, tanque);
     }
 
     @Test

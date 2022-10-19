@@ -12,13 +12,11 @@ import org.junit.jupiter.api.BeforeEach;
 public class CarroTest {
     
     static Carro novoCarro;
-    static String placa = "XXX0X00";
-    static double valorDeVenda = 30000.00;
-    static int kmRodados = 1000;
+    static String[] dados = {"Carro", "GYE-9781", "40k A7JsLJ AT Bv0967", "30000", "1000", "2010", "Azul"};
     
     @BeforeEach
     public void init() {
-        novoCarro = new Carro(placa, valorDeVenda, kmRodados);
+        novoCarro = new Carro(dados);
     }
 
     @Test

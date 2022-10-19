@@ -2,14 +2,14 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
 
-    private LinkedList<Veiculo> listaVeiculos = new LinkedList<Veiculo>();
-    private Carro novoCarro;
+    private static LinkedList<Veiculo> listaVeiculos = new LinkedList<Veiculo>();
 
-    public Veiculo localizarVeiculo(String placa) {
+    public static Veiculo localizarVeiculo(String placa) {
         
         Veiculo veiculoProcurado = null;
 
@@ -26,20 +26,15 @@ public class App {
      * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos veículos
      */
 
-    public void carregarDadosVeiculo(String nomeArquivo) {
+    public static void carregarDadosVeiculo(String nomeArquivo) {
         try{        
-            Path path = Paths.get(nomeArquivo);
+            Path path = Paths.get("C:/Users/Cliente Vip Infomac/Desktop/PUC/PM/LPM/projetos-3-4-5-grupo-2/" + nomeArquivo);
             String[] vetLinha;
             Scanner scanner = new Scanner(path,"UTF-8");
             while(scanner.hasNextLine()){
                 String linha = scanner.nextLine();
-                vetLinha=linha.split(";");
-                if(vetLinha[0].equals("Carro")){
-                    // Verificar se o construtor recebera a linha do arquivo ou se há uma forma melhor
-                    // de fazer isso
-                    novoCarro = new Carro("TESTE", 35.000,3000);
-                    listaVeiculos.add(novoCarro);
-                } 
+                vetLinha = linha.split(";");
+                criarVeiculo(vetLinha);
             }
             scanner.close();}
         catch(IOException io)
@@ -48,18 +43,26 @@ public class App {
         }
     }
 
-    /**
-     * Busca o caminho da pasta atual
-     * @return caminho da pasta
-     */
-    private String getCurrentDirectory(){
-        return this.getClass().getClassLoader().getResource("Veiculos.txt").getHost();
-    }
+    private static void criarVeiculo(String[] vetLinha) {
+        Veiculo newVeiculo = null;
 
+        if(vetLinha[0].equals("Carro")){
+            newVeiculo = new Carro(vetLinha);
+        }
+        else if (vetLinha[0].equals("Caminhao")){
+           newVeiculo = new Caminhao(vetLinha);
+        } 
+        else if (vetLinha[0].equals("Utilitario")){
+            newVeiculo = new Utilitario(vetLinha, 0);
+        }
+
+        listaVeiculos.add(newVeiculo);
+    }
 
     public static void main(String[] args) throws Exception {
         
-        
+        carregarDadosVeiculo("Veiculos.txt");    
+        System.out.println(localizarVeiculo("GYE-9781").valorDeVenda);
         
     }
 }

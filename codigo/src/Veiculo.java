@@ -10,10 +10,13 @@ public abstract class Veiculo {
     //#endregion
 
     //#region - Construtores
-    public Veiculo(String placa, double valorDeVenda, int kmRodados) {
-        this.placa = placa;
-        this.valorDeVenda = valorDeVenda;
-        this.kmRodados = kmRodados;
+    public Veiculo(String[] vetDados) {
+        this.placa = vetDados[1];
+        this.chassi = vetDados[2];
+        this.valorDeVenda = Double.parseDouble(vetDados[3]);
+        this.kmRodados = Integer.parseInt(vetDados[4]);
+        this.anoFabricacao = vetDados[5];
+        this.cor = vetDados[6];
     }
     //#endregion
 

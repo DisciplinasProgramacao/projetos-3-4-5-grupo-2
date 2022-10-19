@@ -12,14 +12,12 @@ public class CaminhaoTest {
      */
     
     static Caminhao novoCaminhao;
-    static String placa = "XXX0X00";
-    static double valorDeVenda = 600000.00;
-    static int kmRodados = 1000;
+    static String[] dados = {"Caminhao", "HIB-2593", "7b7 2sNmnt 52 A81817", "600000", "1000", "2010", "Azul"};
     
     
     @BeforeEach
     public void init() {
-        novoCaminhao = new Caminhao(placa, valorDeVenda, kmRodados);
+        novoCaminhao = new Caminhao(dados);
     }
 
     @Test

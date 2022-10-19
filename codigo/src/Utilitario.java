@@ -17,8 +17,8 @@ public class Utilitario extends Veiculo{
     //     }
     // }
 
-    public Utilitario(String placa, double valorDeVenda, int kmRodados, int tanque) {
-        super(placa, valorDeVenda, kmRodados);
+    public Utilitario(String[] vetDados, int tanque) {
+        super(vetDados);
         this.tanque = tanque;
     }
 
