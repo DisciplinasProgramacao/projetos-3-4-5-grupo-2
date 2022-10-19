@@ -1,21 +1,23 @@
 public abstract class Veiculo {
 
-    protected int placa;
-    protected int tanque;
-    protected double ipva;
-    protected double seguro;
+    protected String placa;
+    protected double valorDeVenda;
+    protected int kmRodados;
 
-    public Veiculo(int placa, int tanque, double ipva, double seguro) {
+    public Veiculo(String placa, double valorDeVenda, int kmRodados) {
         this.placa = placa;
-        this.tanque = tanque;
-        this.ipva = ipva;
-        this.seguro = seguro;
+        this.valorDeVenda = valorDeVenda;
+        this.kmRodados = kmRodados;
     }
 
-    protected abstract void calcularIPVA();
+    protected abstract double calcularIPVA();
 
-    protected abstract void calcularSeguro();
+    protected abstract double calcularSeguro();
 
     protected abstract void calcularGastosTotais();
-     
+
+    protected void verificarKmRodados() {
+
+    };
+ 
 }
