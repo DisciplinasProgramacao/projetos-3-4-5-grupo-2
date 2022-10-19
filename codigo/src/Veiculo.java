@@ -4,6 +4,9 @@ public abstract class Veiculo {
     protected String placa;
     protected double valorDeVenda;
     protected int kmRodados;
+    protected String chassi;
+    protected String anoFabricacao;
+    protected String cor;
     //#endregion
 
     //#region - Construtores
