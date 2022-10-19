@@ -2,12 +2,13 @@ import javax.naming.InitialContext;
 
 public class Utilitario extends Veiculo{
 
+    //#region - Atributos
     private int tanque;
-    private static final double ipva = 0.03;
-    private static final double seguroTaxa = 0.03;
+    private static final double IPVA = 0.03;
+    private static final double SEGURO_TAXA = 0.03;
     private static final double ALINHAMENTO_VALOR = 120;
     private static final double VISTORIA_VALOR = 500;
-
+    //#endregion
     // public void init(String placa, double valorDeVenda, int kmRodados, int tanque) {
     //     if(verificarTanque(tanque) == true) {
 
@@ -26,11 +27,11 @@ public class Utilitario extends Veiculo{
     }
 
     public double calcularIPVA(){
-        return valorDeVenda * ipva;
+        return valorDeVenda * IPVA;
     };
 
     public double calcularSeguro() {
-        return this.valorDeVenda * seguroTaxa;
+        return this.valorDeVenda * SEGURO_TAXA;
     };
 
     public void calcularGastosTotais() {

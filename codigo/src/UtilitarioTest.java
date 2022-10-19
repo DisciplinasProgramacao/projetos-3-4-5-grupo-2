@@ -4,6 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 public class UtilitarioTest {
+
+        /*
+     * PLANO DE TESTES DA CLASSE UTILITÁRIO
+     * - Calculo de IPVA ✔️
+     * - Calculo de seguro ✔️
+     */
         
     static Utilitario novoUtilitario;
     static String placa = "XXX0X00";
