@@ -41,7 +41,11 @@ public class Caminhao extends Veiculo{
     private void calcularVistoria() {
 
     };
-    //#endregion
 
+    @Override
+    public String toString() {
+        return String.format("%s;", Caminhao.class.getSimpleName())+super.toString();
+    }
+    //#endregion
 
 }

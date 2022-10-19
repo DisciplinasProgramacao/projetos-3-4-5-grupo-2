@@ -45,4 +45,9 @@ public class Utilitario extends Veiculo{
     private void calcularVistoria() {
 
     };
+
+    @Override
+    public String toString() {
+        return String.format("%s;", Utilitario.class.getSimpleName())+super.toString();
+    }
 }

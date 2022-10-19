@@ -1,3 +1,5 @@
+import org.junit.platform.commons.util.ToStringBuilder;
+
 public abstract class Veiculo {
 
     //#region - Atributos
@@ -32,6 +34,10 @@ public abstract class Veiculo {
 
     };
 
+    @Override
+    public String toString() {
+        return String.format("%s;%s;%.2f;%d;%s;%s", this.placa, this.chassi, this.valorDeVenda, this.kmRodados, this.anoFabricacao, this.cor).toString();
+    }
     //#endregion
  
 }

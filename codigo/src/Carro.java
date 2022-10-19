@@ -34,5 +34,10 @@ public class Carro extends Veiculo{
     private void calcularAlinhamento() {
 
     }    
+
+    @Override
+    public String toString() {
+        return String.format("%s;", Carro.class.getSimpleName())+super.toString();
+    }
     //#endregion
 }
