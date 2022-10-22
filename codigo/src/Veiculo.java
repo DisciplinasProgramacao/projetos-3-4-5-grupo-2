@@ -12,7 +12,8 @@ public abstract class Veiculo {
     //#endregion
 
     //#region - Construtores
-    public Veiculo(String[] vetDados) {
+    public Veiculo(String dados) {
+        String[] vetDados = dados.split(";");
         this.placa = vetDados[1];
         this.chassi = vetDados[2];
         this.valorDeVenda = Double.parseDouble(vetDados[3]);
@@ -37,6 +38,10 @@ public abstract class Veiculo {
     @Override
     public String toString() {
         return String.format("%s;%s;%.2f;%d;%s;%s", this.placa, this.chassi, this.valorDeVenda, this.kmRodados, this.anoFabricacao, this.cor).toString();
+    }
+
+    public String dadosVeiculo(){
+        return toString();
     }
     //#endregion
  

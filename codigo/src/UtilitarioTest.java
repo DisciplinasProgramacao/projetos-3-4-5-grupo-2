@@ -12,7 +12,7 @@ public class UtilitarioTest {
      */
         
     static Utilitario novoUtilitario;
-    static String[] dados = {"Utilitario", "GYE-9781", "40k A7JsLJ AT Bv0967", "90000", "1000", "2010", "Azul"};
+    static String dados = "Utilitario;GYE-9781;40k A7JsLJ AT Bv0967;90000;1000;2010;Azul";
     static int tanque = 80;
 
     @BeforeEach

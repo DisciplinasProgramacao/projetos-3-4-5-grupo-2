@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
 
     private static LinkedList<Veiculo> listaVeiculos = new LinkedList<Veiculo>();
+   
 
     public static Veiculo localizarVeiculo(String placa) {
         
@@ -27,15 +27,14 @@ public class App {
      * 
      * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos veículos
      */
-    public static void carregarDadosVeiculo(String nomeArquivo) {
+    public static void carregarDadosVeiculo(String caminhoArquivo) {
         try{        
-            Path path = Paths.get("C:/Users/Cliente Vip Infomac/Desktop/PUC/PM/LPM/projetos-3-4-5-grupo-2/" + nomeArquivo);
-            String[] vetLinha;
+            Path path = Paths.get(caminhoArquivo);
             Scanner sc = new Scanner(path,"UTF-8");
             while(sc.hasNextLine()){
                 String linha = sc.nextLine();
-                vetLinha = linha.split(";");
-                criarVeiculo(vetLinha);
+               
+                criarVeiculo(linha);
             }
             sc.close();}
         catch(IOException io)
@@ -44,17 +43,18 @@ public class App {
         }
     }
 
-    private static void criarVeiculo(String[] vetLinha) {
+    private static void criarVeiculo(String linha) {
+        String[] vetLinha = linha.split(";");
         Veiculo newVeiculo = null;
 
         if(vetLinha[0].equals("Carro")){
-            newVeiculo = new Carro(vetLinha);
+            newVeiculo = new Carro(linha);
         }
         else if (vetLinha[0].equals("Caminhao")){
-           newVeiculo = new Caminhao(vetLinha);
+           newVeiculo = new Caminhao(linha);
         } 
         else if (vetLinha[0].equals("Utilitario")){
-            newVeiculo = new Utilitario(vetLinha, 0);
+            newVeiculo = new Utilitario(linha, 0);
         }
 
         listaVeiculos.add(newVeiculo);
@@ -74,9 +74,10 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
+        String caminho = "C:\\Users\\bruno\\OneDrive\\Documentos\\folder\\projetos-3-4-5-grupo-2\\Veiculos.txt";
         
-        carregarDadosVeiculo("Veiculos.txt");    
-        System.out.println(localizarVeiculo("GYE-9781").valorDeVenda);
+        carregarDadosVeiculo(caminho);    
+        System.out.println(localizarVeiculo("GYE-9781").dadosVeiculo());
         
     }
 }

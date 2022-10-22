@@ -12,7 +12,7 @@ public class CaminhaoTest {
      */
     
     static Caminhao novoCaminhao;
-    static String[] dados = {"Caminhao", "HIB-2593", "7b7 2sNmnt 52 A81817", "600000", "1000", "2010", "Azul"};
+    static String dados = "Caminhao;HIB-2593;7b7 2sNmnt 52 A81817; 600000;1000;2010;Azul";
     
     
     @BeforeEach

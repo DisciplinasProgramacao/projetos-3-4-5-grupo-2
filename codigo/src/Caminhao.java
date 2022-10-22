@@ -15,8 +15,8 @@ public class Caminhao extends Veiculo{
     //#endregion
 
     //#region - Construtores
-    public Caminhao(String[] vetDados) {
-        super(vetDados);
+    public Caminhao(String linha) {
+        super(linha);
     }
     //#endregion
 

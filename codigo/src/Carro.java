@@ -11,9 +11,9 @@ public class Carro extends Veiculo{
 
     //#region - Construtores
 
-    public Carro(String[] vetDados) {
+    public Carro(String linha) {
         //String placa, String chassi, double valorDeVenda, int kmRodados, String anoFab, String cor
-        super(vetDados);
+        super(linha);
     }
 
     //#endregion
