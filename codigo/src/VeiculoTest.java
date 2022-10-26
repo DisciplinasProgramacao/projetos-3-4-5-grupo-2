@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 public class VeiculoTest {
 
     /*
-    * PLANO DE TESTES DA CLASSE UTILITÁRIO
+    * PLANO DE TESTES DA CLASSE VEÍCULO
     * - Calculo de IPVA ✔️
     * - Calculo de seguro ✔️
     * - Calculo de outros custos ✔️
