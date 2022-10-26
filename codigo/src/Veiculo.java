@@ -11,9 +11,9 @@ public abstract class Veiculo {
     //#region - Construtores
     public Veiculo(String dados) {
         String[] vetDados = dados.split(";");
-        this.placa = vetDados[1];
-        this.valorDeVenda = Double.parseDouble(vetDados[3]);
-        this.kmRodados = Integer.parseInt(vetDados[4]);
+        this.placa = vetDados[0];
+        this.valorDeVenda = Double.parseDouble(vetDados[1]);
+        this.kmRodados = Integer.parseInt(vetDados[2]);
     }
     //#endregion
 
