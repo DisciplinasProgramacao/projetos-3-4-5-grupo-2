@@ -9,24 +9,36 @@ public class VeiculoTest {
     * PLANO DE TESTES DA CLASSE UTILITÁRIO
     * - Calculo de IPVA ✔️
     * - Calculo de seguro ✔️
+    * - Calculo de outros custos ✔️
+    * - Calculo de gastos totais ✔️
     */
         
     static Veiculo novoVeiculo;
-    static String dados = "Carro;GYE-9781;40k A7JsLJ AT Bv0967;90000;1000;2010;Azul";
+    static String dados = "Carro;GYE-9781;90000;75000";
 
     @BeforeEach
     public void init() {
-        novoVeiculo = new Veiculo(dados);
+        novoVeiculo = new Carro(dados);
     }
 
     @Test
     public void calcularIpvaDoVeiculo() {
-        assertEquals(2700, novoVeiculo.calcularIPVA());
+        assertEquals(3600, novoVeiculo.calcularIPVA());
     }
 
     @Test
     public void calcularSeguroDoVeiculo(){
-        assertEquals(2700, novoVeiculo.calcularSeguro());
+        assertEquals(4800, novoVeiculo.calcularSeguro());
+    }
+
+    @Test
+    public void calcularOutrosCustos(){
+        assertEquals(600, novoVeiculo.calcularOutrosCustos());
+    }
+
+    @Test
+    public void calcularGastosTotais(){
+        assertEquals(9000, novoVeiculo.calcularGastosTotais());
     }
 
 }

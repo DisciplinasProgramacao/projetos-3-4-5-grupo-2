@@ -35,16 +35,16 @@ public class Utilitario extends Veiculo{
         return super.calcularSeguro(SEGURO_TAXA, 0);
     };
 
-    public void calcularGastosTotais() {
-        
-    };
+    protected double calcularOutrosCustos() {
+        return calcularAlinhamento() + calcularVistoria();
+    }
 
-    private void calcularAlinhamento() {
-
+    private double calcularAlinhamento() {
+        return (kmRodados/10000.0) * ALINHAMENTO_VALOR;
     };
     
-    private void calcularVistoria() {
-
+    private double calcularVistoria() {
+        return (kmRodados/10000.0) * VISTORIA_VALOR;
     };
 
     @Override

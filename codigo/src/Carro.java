@@ -23,12 +23,12 @@ public class Carro extends Veiculo{
         return super.calcularSeguro(SEGURO_TAXA, SEGURO_FIXO);
     };
 
-    public void calcularGastosTotais() {
-        
-    };
+    protected double calcularOutrosCustos() {
+        return calcularAlinhamento();
+    }
 
-    private void calcularAlinhamento() {
-
+    private double calcularAlinhamento() {
+        return (kmRodados/10000.0) * ALINHAMENTO_VALOR;
     }    
 
     @Override

@@ -29,16 +29,16 @@ public class Caminhao extends Veiculo{
         return super.calcularSeguro(SEGURO_TAXA, SEGURO_FIXO);
     };
 
-    public void calcularGastosTotais() {
+    protected double calcularOutrosCustos() {
+        return calcularManutencao() + calcularVistoria();
+    }
 
+    private double calcularManutencao() {
+        return (kmRodados/20000.0) * MANUTENCAO_VALOR;
     };
 
-    private void calcularManutencao() {
-
-    };
-
-    private void calcularVistoria() {
-
+    private double calcularVistoria() {
+        return (kmRodados/30000.0) * VISTORIA_VALOR;
     };
 
     @Override

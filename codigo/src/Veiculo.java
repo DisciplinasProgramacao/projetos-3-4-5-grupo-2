@@ -11,9 +11,9 @@ public abstract class Veiculo {
     //#region - Construtores
     public Veiculo(String dados) {
         String[] vetDados = dados.split(";");
-        this.placa = vetDados[0];
-        this.valorDeVenda = Double.parseDouble(vetDados[1]);
-        this.kmRodados = Integer.parseInt(vetDados[2]);
+        this.placa = vetDados[1];
+        this.valorDeVenda = Double.parseDouble(vetDados[2]);
+        this.kmRodados = Integer.parseInt(vetDados[3]);
     }
     //#endregion
 
@@ -26,7 +26,15 @@ public abstract class Veiculo {
         return (this.valorDeVenda * seguroTaxa) + seguroFixo;
     };
 
-    protected abstract void calcularGastosTotais();
+    protected abstract double calcularOutrosCustos();
+
+    protected abstract double calcularIPVA();
+
+    protected abstract double calcularSeguro();
+
+    protected double calcularGastosTotais() {
+        return calcularIPVA() + calcularSeguro() + calcularOutrosCustos();
+    }
 
     protected void verificarKmRodados() {
 
