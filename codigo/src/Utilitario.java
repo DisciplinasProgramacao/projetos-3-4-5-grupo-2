@@ -27,11 +27,12 @@ public class Utilitario extends Veiculo{
     }
 
     public double calcularIPVA(){
-        return valorDeVenda * IPVA;
+        return super.calcularIPVA(IPVA);
     };
 
+    //#region - Métodos
     public double calcularSeguro() {
-        return this.valorDeVenda * SEGURO_TAXA;
+        return super.calcularSeguro(SEGURO_TAXA, 0);
     };
 
     public void calcularGastosTotais() {

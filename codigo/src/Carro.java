@@ -1,7 +1,6 @@
 public class Carro extends Veiculo{
 
     //#region - Atributos
-    
     private static final int TANQUE = 50;
     private static final double IPVA = 0.04;
     private static final double SEGURO_TAXA = 0.05;
@@ -10,21 +9,18 @@ public class Carro extends Veiculo{
     //#endregion
 
     //#region - Construtores
-
     public Carro(String linha) {
-        //String placa, String chassi, double valorDeVenda, int kmRodados, String anoFab, String cor
         super(linha);
     }
 
     //#endregion
-
     public double calcularIPVA(){
-        return this.valorDeVenda * IPVA;
+        return super.calcularIPVA(IPVA);
     };
 
     //#region - Métodos
     public double calcularSeguro() {
-        return (this.valorDeVenda * SEGURO_TAXA) + SEGURO_FIXO;
+        return super.calcularSeguro(SEGURO_TAXA, SEGURO_FIXO);
     };
 
     public void calcularGastosTotais() {

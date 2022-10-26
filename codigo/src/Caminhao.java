@@ -1,15 +1,13 @@
-import java.rmi.server.RemoteStub;
-
 import javax.print.attribute.standard.RequestingUserName;
 
 public class Caminhao extends Veiculo{
 
 
     //#region - Atributos
-    private static final int tanque = 250;    
-    private static final double ipva = 0.01;
-    private static final double seguroTaxa = 0.02;
-    private static final double seguroFixo = 2000;
+    private static final int TANQUE = 250;    
+    private static final double IPVA = 0.01;
+    private static final double SEGURO_TAXA = 0.02;
+    private static final double SEGURO_FIXO = 2000;
     private static final double MANUTENCAO_VALOR = 1000;    
     private static final double VISTORIA_VALOR = 1000;
     //#endregion
@@ -23,11 +21,12 @@ public class Caminhao extends Veiculo{
     //#region - Métodos
 
     public double calcularIPVA(){
-        return valorDeVenda * ipva;
+        return super.calcularIPVA(IPVA);
     };
 
+    //#region - Métodos
     public double calcularSeguro() {
-        return (this.valorDeVenda * seguroTaxa) + seguroFixo;
+        return super.calcularSeguro(SEGURO_TAXA, SEGURO_FIXO);
     };
 
     public void calcularGastosTotais() {

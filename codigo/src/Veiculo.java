@@ -6,28 +6,25 @@ public abstract class Veiculo {
     protected String placa;
     protected double valorDeVenda;
     protected int kmRodados;
-    protected String chassi;
-    protected String anoFabricacao;
-    protected String cor;
     //#endregion
 
     //#region - Construtores
     public Veiculo(String dados) {
         String[] vetDados = dados.split(";");
         this.placa = vetDados[1];
-        this.chassi = vetDados[2];
         this.valorDeVenda = Double.parseDouble(vetDados[3]);
         this.kmRodados = Integer.parseInt(vetDados[4]);
-        this.anoFabricacao = vetDados[5];
-        this.cor = vetDados[6];
     }
     //#endregion
 
     //#region - Métodos
+    protected double calcularIPVA(double ipva) {
+        return this.valorDeVenda * ipva;
+    };
 
-    protected abstract double calcularIPVA();
-
-    protected abstract double calcularSeguro();
+    protected double calcularSeguro(double seguroTaxa, double seguroFixo) {
+        return (this.valorDeVenda * seguroTaxa) + seguroFixo;
+    };
 
     protected abstract void calcularGastosTotais();
 
@@ -37,7 +34,7 @@ public abstract class Veiculo {
 
     @Override
     public String toString() {
-        return String.format("%s;%s;%.2f;%d;%s;%s", this.placa, this.chassi, this.valorDeVenda, this.kmRodados, this.anoFabricacao, this.cor).toString();
+        return String.format("%s;%.2f;%d;", this.placa, this.valorDeVenda, this.kmRodados).toString();
     }
 
     public String dadosVeiculo(){
