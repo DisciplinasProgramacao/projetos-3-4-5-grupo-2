@@ -1,5 +1,3 @@
-import org.junit.platform.commons.util.ToStringBuilder;
-
 public abstract class Veiculo {
 
     //#region - Atributos

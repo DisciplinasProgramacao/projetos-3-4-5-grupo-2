@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class App {
     private static Scanner teclado = new Scanner(System.in, "UTF-8");
     private static LinkedList<Veiculo> listaVeiculos = new LinkedList<Veiculo>();
+    private static String caminho = "C:/SoftwareEngCodes/PUC/Lab Prog Modular/projetos-3-4-5-grupo-2"; 
    
      // #region - Utilidades
     /**
@@ -34,7 +35,8 @@ public class App {
 
         for (int i = 0; i < listaVeiculos.size(); i++) {   
             if(listaVeiculos.get(i).placa.equals(placa)) {
-                veiculoProcurado = listaVeiculos.get(i);  
+                veiculoProcurado = listaVeiculos.get(i);
+                break;  
             }
         }
         return veiculoProcurado;
@@ -46,7 +48,7 @@ public class App {
      */
     public static void carregarDadosVeiculo(String caminhoArquivo) {
         try{        
-            Path path = Paths.get(caminhoArquivo);
+            Path path = Paths.get(caminhoArquivo.concat("/Veiculos.txt"));
             Scanner sc = new Scanner(path,"UTF-8");
             while(sc.hasNextLine()){
                 String linha = sc.nextLine();
@@ -193,9 +195,10 @@ public class App {
         System.out.println(" PéNaEstrada - O seu administrador de veículos");
         System.out.println("========================================");
         System.out.println("Bem vindo a tela de veículos, o que gostaria de fazer?");
-        System.out.println("1 - Localizar um veículo");
-        System.out.println("2 - Calcular IPVA");
-        System.out.println("3 - Calcular seguro do veículo");
+        System.out.println("1 - Calcular IPVA");
+        System.out.println("2 - Calcular seguro do veículo");
+        System.out.println("3 - Calcular outros custos");
+        System.out.println("4 - Calcular gastos totais");
         System.out.println("0 - Sair");
         System.out.print("Digite sua opção: ");
         try {
@@ -251,13 +254,9 @@ public class App {
             return null;
         }
     }
-
-
-
     // #endregion
 
     public static void main(String[] args) throws Exception {
-        String caminho = "C:\\Users\\bruno\\OneDrive\\Documentos\\folder\\projetos-3-4-5-grupo-2\\Veiculos.txt";
         Scanner teclado = new Scanner(System.in, "UTF-8");
 
         carregarDadosVeiculo(caminho);    
@@ -269,8 +268,8 @@ public class App {
                 opcao = menu();
                 switch (opcao) {
                     case 1:
-                    int opcaoVeiculo = menuVeiculos();
-                    switch(opcaoVeiculo){
+                    // int opcaoVeiculo = menuVeiculos();
+                    switch(opcao){
                         case 1: 
                             String placaVeiculoCase1 = digitarPlaca();
                             System.out.println(localizarVeiculo(placaVeiculoCase1).dadosVeiculo());
@@ -287,7 +286,6 @@ public class App {
                     String dadosNovoVeiculo = gerarString(veiculoEscolhido,placaVeiculo,valorDeVenda,valorKmRodados);
                     criarVeiculo(dadosNovoVeiculo);
                     System.out.println("Veiculo criado com sucesso");
-
                     break;
                     
                 }
