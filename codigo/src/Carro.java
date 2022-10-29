@@ -9,24 +9,40 @@ public class Carro extends Veiculo{
     //#endregion
 
     //#region - Construtores
+    /**
+     * Método construtor do carro o método construtor da classe veículo
+     */
     public Carro(String linha) {
         super(linha);
     }
 
     //#endregion
+    
+    /**
+     * Método para calcular o IPVA do carro chamando o método da classe veículo
+     */
     public double calcularIPVA(){
         return super.calcularIPVA(IPVA);
     };
 
     //#region - Métodos
+    /**
+     * Método para calcular o seguro do carro chamando o método da classe veículo
+     */
     public double calcularSeguro() {
         return super.calcularSeguro(SEGURO_TAXA, SEGURO_FIXO);
     };
 
+    /**
+     * Método para calcular o outros custos do carro chamando o método interno
+     */
     protected double calcularOutrosCustos() {
         return calcularAlinhamento();
     }
 
+    /**
+     * Método para calcular o outros custos do carro
+     */
     private double calcularAlinhamento() {
         return (kmRodados/10000.0) * ALINHAMENTO_VALOR;
     }    
