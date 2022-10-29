@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 public class VeiculoTest {
-
     /*
     * PLANO DE TESTES DA CLASSE VEÍCULO
     * - Calculo de IPVA ✔️
@@ -15,6 +14,7 @@ public class VeiculoTest {
         
     static Veiculo novoVeiculo;
     static String dados = "Carro;GYE-9781;90000;75000";
+    
 
     @BeforeEach
     public void init() {
