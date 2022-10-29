@@ -1,7 +1,5 @@
 import javax.print.attribute.standard.RequestingUserName;
-
 public class Caminhao extends Veiculo{
-
 
     //#region - Atributos
     private static final int TANQUE = 250;    
@@ -13,6 +11,10 @@ public class Caminhao extends Veiculo{
     //#endregion
 
     //#region - Construtores
+    /**
+     * Construtor caminhão
+     * @param linha Linha de dados proveniente do arquivo.
+     */
     public Caminhao(String linha) {
         super(linha);
     }
