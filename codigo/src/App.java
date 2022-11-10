@@ -29,6 +29,11 @@ public class App {
         teclado.nextLine();
     }
 
+    /**
+     * Método para localizar um veículo
+     * @param placa Dados da placa
+     * @return Retorna o veículo desejado, se ele existir
+     */
     public static Veiculo localizarVeiculo(String placa) {
         
         Veiculo veiculoProcurado = null;
@@ -43,7 +48,7 @@ public class App {
     }
 
     /**
-     * 
+     * Método para carregar os veículos do arquivo de texto
      * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos veículos
      */
     public static void carregarDadosVeiculo(String caminhoArquivo) {
@@ -62,6 +67,10 @@ public class App {
         }
     }
 
+    /**
+     * Método para criar os diferentes tipos de veículos 
+     * @param linha Linha de dados do arquivo
+     */
     private static void criarVeiculo(String linha) {
         String[] vetLinha = linha.split(";");
         Veiculo newVeiculo = null;
@@ -79,6 +88,11 @@ public class App {
         listaVeiculos.add(newVeiculo);
     }
 
+    /**
+     * Método para salvar os veículos
+     * @param caminhoArquivo Caminho do arquivo de texto onde os objetos serão salvos
+     * @throws IOException
+     */
     public void salvar(String caminhoArquivo) throws IOException {
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo));
@@ -92,7 +106,7 @@ public class App {
         bw.close();
     }
 
-        /**
+    /**
      * Override do método toString() para adequar a classe Book
      */
     private static String gerarString(int tipoVeiculo, String placa, String precoVenda, String kmRodados){
@@ -101,6 +115,11 @@ public class App {
         return dadosVeiculo.toString();
     }
 
+    /**
+     * Método para transformar em texto 
+     * @param input Tipo de veículo
+     * @return
+     */
     private static String converteParaStringVeiculo(int input){
         String tipoVeiculo=null;
 

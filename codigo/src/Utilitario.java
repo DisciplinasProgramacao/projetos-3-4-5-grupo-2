@@ -7,14 +7,12 @@ public class Utilitario extends Veiculo{
     private static final double ALINHAMENTO_VALOR = 120;
     private static final double VISTORIA_VALOR = 500;
     //#endregion
-    // public void init(String placa, double valorDeVenda, int kmRodados, int tanque) {
-    //     if(verificarTanque(tanque) == true) {
 
-    //     } else {
-    //         System.out.println("Este veículo não é um utilitário");
-    //     }
-    // }
-
+    /**
+     * Construtor veículos da classe utilitário (vans ou furgões)
+     * @param dados Linha de dados 
+     * @param tanque Capacidade em litros do tanque
+     */
     public Utilitario(String dados, int tanque) {
         super(dados);
         this.tanqueMax = tanque;
@@ -24,15 +22,24 @@ public class Utilitario extends Veiculo{
         return ((tanque == 60 || tanque == 80) ? true : false);
     }
 
+    /**
+     * Método para calcular o IPVA do utilitário
+     */
     public double calcularIPVA(){
         return super.calcularIPVA(IPVA);
     };
 
     //#region - Métodos
+     /**
+     * Método para calcular o seguro do utilitário
+     */
     public double calcularSeguro() {
         return super.calcularSeguro(SEGURO_TAXA, 0);
     };
-
+     
+    /**
+     * Método para calcular outros custos do utilitário
+     */
     protected double calcularOutrosCustos() {
         return calcularAlinhamento() + calcularVistoria();
     }
