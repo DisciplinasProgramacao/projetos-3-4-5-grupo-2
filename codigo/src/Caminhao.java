@@ -4,7 +4,7 @@ public class Caminhao extends Veiculo{
 
 
     //#region - Atributos
-    private static final int TANQUE = 250;    
+    private static final double TANQUE_MAX = 250;    
     private static final double IPVA = 0.01;
     private static final double SEGURO_TAXA = 0.02;
     private static final double SEGURO_FIXO = 2000;

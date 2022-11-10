@@ -3,7 +3,8 @@ public abstract class Veiculo {
     //#region - Atributos
     protected String placa;
     protected double valorDeVenda;
-    protected int kmRodados;
+    protected double kmRodados;
+    protected int qtdRotas;
     //#endregion
 
     //#region - Construtores
@@ -11,7 +12,7 @@ public abstract class Veiculo {
         String[] vetDados = dados.split(";");
         this.placa = vetDados[1];
         this.valorDeVenda = Double.parseDouble(vetDados[2]);
-        this.kmRodados = Integer.parseInt(vetDados[3]);
+        this.kmRodados = Double.parseDouble(vetDados[3]);
     }
     //#endregion
 

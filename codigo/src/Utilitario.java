@@ -1,9 +1,7 @@
-import javax.naming.InitialContext;
-
 public class Utilitario extends Veiculo{
 
     //#region - Atributos
-    private int tanque;
+    private double tanqueMax;
     private static final double IPVA = 0.03;
     private static final double SEGURO_TAXA = 0.03;
     private static final double ALINHAMENTO_VALOR = 120;
@@ -19,7 +17,7 @@ public class Utilitario extends Veiculo{
 
     public Utilitario(String dados, int tanque) {
         super(dados);
-        this.tanque = tanque;
+        this.tanqueMax = tanque;
     }
 
     private boolean verificarTanque(int tanque) {

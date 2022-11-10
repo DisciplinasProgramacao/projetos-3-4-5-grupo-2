@@ -1,7 +1,7 @@
 public class Carro extends Veiculo{
 
     //#region - Atributos
-    private static final int TANQUE = 50;
+    private static final double TANQUE_MAX = 50;
     private static final double IPVA = 0.04;
     private static final double SEGURO_TAXA = 0.05;
     private static final double SEGURO_FIXO = 300;

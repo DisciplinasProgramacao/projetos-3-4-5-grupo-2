@@ -4,20 +4,15 @@ public class Rota {
 
     //#region - Atributos
     private Date data;
-    private double distancia_total;
+    private double kmRota;
     //#endregion
 
     //#region - Construtores
-    public Rota(Date data, double distancia_total) {
+    public Rota(Date data, double kmRota) {
         this.data = data;
-        this.distancia_total = distancia_total;
+        this.kmRota = kmRota;
     }
     //#endregion
 
-    //#region - Métodos
-
-    public void addRota(double km, Veiculo veiculo) {
-        
-    }
-    //#endregion
+    
 }
