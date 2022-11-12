@@ -2,12 +2,13 @@ import java.util.LinkedList;
 
 public abstract class Veiculo {
     //#region - Atributos
-    protected String placa;
-    protected Tanque tanque;
-    protected int qtdRotas;
-    protected LinkedList<Rota> rotas;
-    protected double valorDeVenda;
-    protected double kmRodados;
+    private String placa;
+    private Tanque tanque;
+    private int qtdRotas;
+    private LinkedList<Rota> rotas;
+    private double valorDeVenda;
+    private double kmRodados;
+    private TVeiculo tpVeiculo;
     //#endregion
 
     //#region - Construtores
@@ -17,11 +18,30 @@ public abstract class Veiculo {
      */
     public Veiculo(String dados) {
         String[] vetDados = dados.split(";");
+        defineTipoVeiculo(vetDados[0]);
+        
         this.placa = vetDados[1];
         this.valorDeVenda = Double.parseDouble(vetDados[2]);
         this.kmRodados = Double.parseDouble(vetDados[3]);
     }
     //#endregion
+
+    private void defineTipoVeiculo(String tipo) {
+        if(tipo.equals("Carro")){
+            tpVeiculo = TVeiculo.CARRO;
+        }
+        else if (tipo.equals("Caminhao")){
+            tpVeiculo = TVeiculo.CAMINHAO;
+        } 
+        else if (tipo.equals("Utilitario")){
+            tpVeiculo = TVeiculo.UTILITARIO;
+        }
+    }
+
+    public double retornaCustosTotais(){
+        CustoFixo custoFixo = new CustoFixo(tpVeiculo);
+        return custoFixo.calcularIPVA(valorDeVenda) /* + OS OUTROS CUSTOS */;
+    }
 
     //#region - Métodos
     /**
