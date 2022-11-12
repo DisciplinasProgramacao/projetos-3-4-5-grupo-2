@@ -1,9 +1,13 @@
+import java.util.LinkedList;
+
 public abstract class Veiculo {
     //#region - Atributos
     protected String placa;
+    protected Tanque tanque;
+    protected int qtdRotas;
+    protected LinkedList<Rota> rotas;
     protected double valorDeVenda;
     protected double kmRodados;
-    protected int qtdRotas;
     //#endregion
 
     //#region - Construtores
