@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class App {
     private static Scanner teclado = new Scanner(System.in, "UTF-8");
-    private static LinkedList<Veiculo> listaVeiculos = new LinkedList<Veiculo>();
     private static String caminho = "C:/SoftwareEngCodes/PUC/Lab Prog Modular/projetos-3-4-5-grupo-2"; 
    
      // #region - Utilidades
@@ -29,115 +28,6 @@ public class App {
         teclado.nextLine();
     }
 
-    /**
-     * Método para localizar um veículo
-     * @param placa Dados da placa
-     * @return Retorna o veículo desejado, se ele existir
-     */
-    public static Veiculo localizarVeiculo(String placa) {
-        
-        Veiculo veiculoProcurado = null;
-
-        for (int i = 0; i < listaVeiculos.size(); i++) {   
-            if(listaVeiculos.get(i).placa.equals(placa)) {
-                veiculoProcurado = listaVeiculos.get(i);
-                break;  
-            }
-        }
-        return veiculoProcurado;
-    }
-
-    /**
-     * Método para carregar os veículos do arquivo de texto
-     * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos veículos
-     */
-    public static void carregarDadosVeiculo(String caminhoArquivo) {
-        try{        
-            Path path = Paths.get(caminhoArquivo.concat("/Veiculos.txt"));
-            Scanner sc = new Scanner(path,"UTF-8");
-            while(sc.hasNextLine()){
-                String linha = sc.nextLine();
-               
-                criarVeiculo(linha);
-            }
-            sc.close();}
-        catch(IOException io)
-        {
-            System.out.println("Erro ao abrir arquivo");
-        }
-    }
-
-    /**
-     * Método para criar os diferentes tipos de veículos 
-     * @param linha Linha de dados do arquivo
-     */
-    private static void criarVeiculo(String linha) {
-        String[] vetLinha = linha.split(";");
-        Veiculo newVeiculo = null;
-
-        if(vetLinha[0].equals("Carro")){
-            newVeiculo = new Carro(linha);
-        }
-        else if (vetLinha[0].equals("Caminhao")){
-           newVeiculo = new Caminhao(linha);
-        } 
-        else if (vetLinha[0].equals("Utilitario")){
-            newVeiculo = new Utilitario(linha, 0);
-        }
-
-        listaVeiculos.add(newVeiculo);
-    }
-
-    /**
-     * Método para salvar os veículos
-     * @param caminhoArquivo Caminho do arquivo de texto onde os objetos serão salvos
-     * @throws IOException
-     */
-    public void salvar(String caminhoArquivo) throws IOException {
-
-        BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo));
-        Veiculo[] veiculo = new Veiculo[listaVeiculos.size()];
-
-        for(int i = 0; i < listaVeiculos.size(); i++) {
-            bw.write(veiculo[i].toString());
-            bw.newLine();    
-        }
-
-        bw.close();
-    }
-
-    /**
-     * Override do método toString() para adequar a classe Book
-     */
-    private static String gerarString(int tipoVeiculo, String placa, String precoVenda, String kmRodados){
-        String tipoVeiculoString = converteParaStringVeiculo(tipoVeiculo);
-        StringBuilder dadosVeiculo = new StringBuilder(tipoVeiculoString+";"+placa+";"+precoVenda+";"+kmRodados);
-        return dadosVeiculo.toString();
-    }
-
-    /**
-     * Método para transformar em texto 
-     * @param input Tipo de veículo
-     * @return
-     */
-    private static String converteParaStringVeiculo(int input){
-        String tipoVeiculo=null;
-
-        switch(input){
-            case 1:
-                tipoVeiculo = "Carro";
-            break;
-            case 2:
-                tipoVeiculo = "Utilitario";
-            break;
-            case 3:
-                tipoVeiculo = "Caminhao";
-            break;
-        }
-
-        return tipoVeiculo;
-    }
-    // #endregion
 
     // #region - Menus
     /**
@@ -278,7 +168,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner teclado = new Scanner(System.in, "UTF-8");
 
-        carregarDadosVeiculo(caminho);    
+        PeNaEstrada.carregarDadosVeiculo(caminho);    
         
         int opcao;
 
@@ -291,7 +181,7 @@ public class App {
                     switch(opcao){
                         case 1: 
                             String placaVeiculoCase1 = digitarPlaca();
-                            System.out.println(localizarVeiculo(placaVeiculoCase1).dadosVeiculo());
+                            System.out.println(PeNaEstrada.localizarVeiculo(placaVeiculoCase1).dadosVeiculo());
                             break;
                     }
                     break;
@@ -302,8 +192,8 @@ public class App {
                     String valorDeVenda = digitarValor();
                     System.out.println("\nAgora escolha o valor da quantidade de km rodados:\n");
                     String valorKmRodados = digitarValor();
-                    String dadosNovoVeiculo = gerarString(veiculoEscolhido,placaVeiculo,valorDeVenda,valorKmRodados);
-                    criarVeiculo(dadosNovoVeiculo);
+                    String dadosNovoVeiculo = PeNaEstrada.gerarString(veiculoEscolhido,placaVeiculo,valorDeVenda,valorKmRodados);
+                    PeNaEstrada.adicionaVeiculo(dadosNovoVeiculo);
                     System.out.println("Veiculo criado com sucesso");
                     break;
                     

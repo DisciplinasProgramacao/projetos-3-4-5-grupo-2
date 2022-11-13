@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 public abstract class Veiculo {
     //#region - Atributos
-    private String placa;
+    public String placa;
     private Tanque tanque;
     private int qtdRotas;
     private LinkedList<Rota> rotas;
