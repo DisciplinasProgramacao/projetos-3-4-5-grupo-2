@@ -11,4 +11,12 @@ public enum Tseguro {
         this.seguroTaxa = seguroTaxa;
         this.seguroFixo = seguroFixo;
     }
+
+    public double getSeguroTaxa() {
+        return seguroTaxa;
+    }
+
+    public int getSeguroFixo() {
+        return seguroFixo;
+    }
 }

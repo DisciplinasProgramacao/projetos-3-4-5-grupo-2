@@ -14,12 +14,33 @@ public class CustoFixo implements ICusto {
     
     @Override
     public double retornaCusto() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
-    public double calcularIPVA(double valorVenda) {
+
+    // protected double calcularGastosTotais() {
+    //     return calcularIPVA() + calcularSeguro() + calcularOutrosCustos();
+    // }
+
+
+    private double calcularIPVA(double valorVenda) {
         return valorVenda * tpVeiculo.getIPVA().getTaxaIPVA();
+    };
+
+    private double calcularSeguro(double valorVenda) {
+        return (valorVenda * tpVeiculo.getSeguro().getSeguroTaxa()) + tpVeiculo.getSeguro().getSeguroFixo();
+    }
+
+    private double calcularOutrosCustos() {
+
+    }
+
+    private double calcularAlinhamento() {
+        return (kmRodados/10000.0) * ALINHAMENTO_VALOR;
+    };
+    
+    private double calcularVistoria() {
+        return (kmRodados/10000.0) * VISTORIA_VALOR;
     };
 
 }

@@ -13,5 +13,17 @@ public enum TOutrosCustos {
         this.manutencao = manutencao;
         this.vistoria = vistoria;
     }
-    
+
+    public int getAlinhamento() {
+        return alinhamento;
+    }
+
+    public int getManutencao() {
+        return manutencao;
+    }
+
+    public int getVistoria() {
+        return vistoria;
+    }
+
 }
