@@ -12,60 +12,61 @@ import java.util.stream.Collectors;
 
 public class PeNaEstrada {
 
-    //#region Atributos
+    // #region Atributos
     private static LinkedList<Veiculo> listaVeiculos = new LinkedList<Veiculo>();
-    //#endregion
+    // #endregion
 
-
-    //#region - Construtor
+    // #region - Construtor
     public PeNaEstrada() {
-        
+
     }
+    // #endregion
 
-    //#endregion
-
-    
     /**
      * Método para localizar um veículo
+     * 
      * @param placa Dados da placa
      * @return Retorna o veículo desejado, se ele existir
      */
     public static Veiculo localizarVeiculo(String placa) {
-        
+
         Veiculo veiculoProcurado = null;
 
-        for (int i = 0; i < listaVeiculos.size(); i++) {   
-            if(listaVeiculos.get(i).placa.equals(placa)) {
+        for (int i = 0; i < listaVeiculos.size(); i++) {
+            if (listaVeiculos.get(i).placa.equals(placa)) {
                 veiculoProcurado = listaVeiculos.get(i);
-                break;  
+                break;
             }
         }
         return veiculoProcurado;
     }
-    
+
     /**
      * Método para carregar os veículos do arquivo de texto
-     * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos veículos
+     * 
+     * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos
+     *                    veículos
      */
     public static void carregarDadosVeiculo(String caminho) {
-        try{        
+        try {
             Path path = Paths.get(caminho.concat("/Veiculos.txt"));
-            Scanner sc = new Scanner(path,"UTF-8");
-            while(sc.hasNextLine()){
+            Scanner sc = new Scanner(path, "UTF-8");
+            while (sc.hasNextLine()) {
                 String linha = sc.nextLine();
-               
+
                 adicionaVeiculo(linha);
             }
-            sc.close();}
-        catch(IOException io)
-        {
+            sc.close();
+        } catch (IOException io) {
             System.out.println("Erro ao abrir arquivo");
         }
     }
 
     /**
      * Método para salvar os veículos
-     * @param caminhoArquivo Caminho do arquivo de texto onde os objetos serão salvos
+     * 
+     * @param caminhoArquivo Caminho do arquivo de texto onde os objetos serão
+     *                       salvos
      * @throws IOException
      */
     public void salvar(String caminhoArquivo) throws IOException {
@@ -73,9 +74,9 @@ public class PeNaEstrada {
         BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo));
         Veiculo[] veiculo = new Veiculo[listaVeiculos.size()];
 
-        for(int i = 0; i < listaVeiculos.size(); i++) {
+        for (int i = 0; i < listaVeiculos.size(); i++) {
             bw.write(veiculo[i].toString());
-            bw.newLine();    
+            bw.newLine();
         }
 
         bw.close();
@@ -84,53 +85,55 @@ public class PeNaEstrada {
     /**
      * Override do método toString() para adequar a classe Veiculo
      */
-    public static String gerarString(int tipoVeiculo, String placa, String precoVenda, String kmRodados){
+    public static String gerarString(int tipoVeiculo, String placa, String precoVenda, String kmRodados) {
         String tipoVeiculoString = converteParaStringVeiculo(tipoVeiculo);
-        StringBuilder dadosVeiculo = new StringBuilder(tipoVeiculoString+";"+placa+";"+precoVenda+";"+kmRodados);
+        StringBuilder dadosVeiculo = new StringBuilder(
+                tipoVeiculoString + ";" + placa + ";" + precoVenda + ";" + kmRodados);
         return dadosVeiculo.toString();
     }
 
     /**
-     * Método para transformar em texto 
+     * Método para transformar em texto
+     * 
      * @param input Tipo de veículo
      * @return
      */
-    private static String converteParaStringVeiculo(int input){
-        String tipoVeiculo=null;
+    private static String converteParaStringVeiculo(int input) {
+        String tipoVeiculo = null;
 
-        switch(input){
+        switch (input) {
             case 1:
                 tipoVeiculo = "Carro";
-            break;
+                break;
             case 2:
                 tipoVeiculo = "Utilitario";
-            break;
+                break;
             case 3:
                 tipoVeiculo = "Caminhao";
-            break;
+                break;
         }
 
         return tipoVeiculo;
     }
-    // #endregion
 
     /**
-     * Método para criar os diferentes tipos de veículos 
+     * Método para criar os diferentes tipos de veículos
+     * 
      * @param linha Linha de dados do arquivo
      */
     public static void adicionaVeiculo(String linha) {
         Veiculo newVeiculo = new Veiculo(linha);
-        listaVeiculos.add(newVeiculo); 
+        listaVeiculos.add(newVeiculo);
     }
 
     public static void addRota(Date data, Veiculo veiculo, double kmRota) {
-        veiculo.incluirRota(data, kmRota); 
+        veiculo.incluirRota(data, kmRota);
     }
 
     public static void topTresRotas() {
         System.out.println("3 veículos com mais rotas realizadas: ");
         listaVeiculos.stream()
-                .sorted()
+                .sorted((v1, v2) -> v1.maiorQuantRotas(v2))
                 .limit(3)
                 .forEach(p -> System.out.println(p.placa));
     }
@@ -141,7 +144,7 @@ public class PeNaEstrada {
 
     public Veiculo localizarVeiculo() {
 
-        return null ;
+        return null;
     }
 
     public void kmAvgRotas() {
@@ -150,22 +153,19 @@ public class PeNaEstrada {
 
     public void listarVeiculosPorCusto() {
         System.out.println("Lista de veículos com custos gerados em ordem decrescente: ");
-        
+
         Collections.reverse(listaVeiculos
                 .stream()
                 .sorted((Comparator.comparingDouble(Veiculo::getCustosGerados)))
                 .collect(Collectors.toList()));
 
-
         // listaVeiculos.stream().sorted((o1, o2) -> o1.getCustosGerados()
-        //         .compareTo(o2.getCustosGerados()))
-        //         .forEach(p -> System.out.println(p.placa));
+        // .compareTo(o2.getCustosGerados()))
+        // .forEach(p -> System.out.println(p.placa));
     }
-
 
     public void buscarRotasPorDatas() {
 
     }
-
 
 }
