@@ -10,6 +10,7 @@ public class Veiculo implements Comparable<Veiculo> {
     private double valorDeVenda;
     private double kmRodados;
     private TVeiculo tpVeiculo;
+    private double custosGerados;
     //#endregion
 
     //#region - Construtores
@@ -24,6 +25,7 @@ public class Veiculo implements Comparable<Veiculo> {
         this.placa = vetDados[1];
         this.valorDeVenda = Double.parseDouble(vetDados[2]);
         this.kmRodados = Double.parseDouble(vetDados[3]);
+        this.custosGerados = 0;
     }
     //#endregion
 
@@ -43,7 +45,9 @@ public class Veiculo implements Comparable<Veiculo> {
         CustoFixo custoFixo = new CustoFixo(tpVeiculo);
         CustoVariavel custoVariavel = new CustoVariavel(valor, descricao);
 
-        return custoFixo.retornaCustoFixo(this.valorDeVenda, this.kmRodados) + custoVariavel.retornaCustoVariavel();
+        this.custosGerados = (custoFixo.retornaCustoFixo(this.valorDeVenda, this.kmRodados) + custoVariavel.retornaCustoVariavel());
+
+        return custosGerados;
     }
 
     protected void verificarKmRodados() {
@@ -74,6 +78,11 @@ public class Veiculo implements Comparable<Veiculo> {
         Rota newRota = new Rota(date, kmRota);
         rotas.add(newRota);
     }
+
+    public double getCustosGerados() {
+        return custosGerados;
+    }
+
     //#endregion
  
 }

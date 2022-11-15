@@ -13,31 +13,31 @@ public class CustoFixo {
     }
     
     public double retornaCustoFixo(double valorVenda, double kmRodados) {
-        return calcularIPVA(valorVenda) + calcularSeguro(valorVenda) + calcularOutrosCustos(kmRodados);
+        return (double) calcularIPVA(valorVenda) + calcularSeguro(valorVenda) + calcularOutrosCustos(kmRodados);
     }
 
     private double calcularIPVA(double valorVenda) {
-        return valorVenda * tpVeiculo.getIPVA().getTaxaIPVA();
+        return (double) valorVenda * tpVeiculo.getIPVA().getTaxaIPVA();
     };
 
     private double calcularSeguro(double valorVenda) {
-        return (valorVenda * tpVeiculo.getSeguro().getSeguroTaxa()) + tpVeiculo.getSeguro().getSeguroFixo();
+        return (double) (valorVenda * tpVeiculo.getSeguro().getSeguroTaxa()) + tpVeiculo.getSeguro().getSeguroFixo();
     }
 
     private double calcularOutrosCustos(double kmRodados) {
-        return calcularAlinhamento(kmRodados) + calcularVistoria(kmRodados) + calcularManutencao(kmRodados);
+        return (double) calcularAlinhamento(kmRodados) + calcularVistoria(kmRodados) + calcularManutencao(kmRodados);
     }
 
     private double calcularAlinhamento(double kmRodados) {
-        return (kmRodados/tpVeiculo.getControleKm().getKmAlinhamento()) * tpVeiculo.getOutrosCustos().getAlinhamento();
+        return (double) (kmRodados/tpVeiculo.getControleKm().getKmAlinhamento()) * tpVeiculo.getOutrosCustos().getAlinhamento();
     };
     
     private double calcularVistoria(double kmRodados) {
-        return (kmRodados/tpVeiculo.getControleKm().getKmVistoria()) * tpVeiculo.getOutrosCustos().getVistoria();
+        return (double) (kmRodados/tpVeiculo.getControleKm().getKmVistoria()) * tpVeiculo.getOutrosCustos().getVistoria();
     };
 
     private double calcularManutencao(double kmRodados) {
-        return (kmRodados/tpVeiculo.getControleKm().getKmManutencao()) * tpVeiculo.getOutrosCustos().getManutencao();
+        return (double) (kmRodados/tpVeiculo.getControleKm().getKmManutencao()) * tpVeiculo.getOutrosCustos().getManutencao();
     };
 
 }

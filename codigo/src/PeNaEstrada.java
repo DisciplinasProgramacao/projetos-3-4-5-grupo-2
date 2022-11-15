@@ -3,25 +3,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class PeNaEstrada {
 
     //#region Atributos
-    private static Date data;
-    private double distanciaTotal;
-    private static LinkedList<Veiculo> veiculos;
     private static LinkedList<Veiculo> listaVeiculos = new LinkedList<Veiculo>();
     //#endregion
 
 
     //#region - Construtor
-    public PeNaEstrada(Date data, double distanciaTotal, LinkedList<Veiculo> veiculos) {
-        this.data = data;
-        this.distanciaTotal = distanciaTotal;
-        this.veiculos = veiculos;
+    public PeNaEstrada() {
+        
     }
 
     //#endregion
@@ -126,8 +124,7 @@ public class PeNaEstrada {
         listaVeiculos.add(newVeiculo); 
     }
 
-    public static void addRota(Veiculo veiculo, double kmRota) {
-        data = new Date();
+    public static void addRota(Date data, Veiculo veiculo, double kmRota) {
         veiculo.incluirRota(data, kmRota); 
     }
 
@@ -153,12 +150,23 @@ public class PeNaEstrada {
     }
 
     public void listarVeiculosPorCusto() {
+        System.out.println("Lista de veículos com custos gerados em ordem decrescente: ");
+        
+        Collections.reverse(listaVeiculos
+                .stream()
+                .sorted((Comparator.comparingDouble(Veiculo::getCustosGerados)))
+                .collect(Collectors.toList()));
 
+
+        // listaVeiculos.stream().sorted((o1, o2) -> o1.getCustosGerados()
+        //         .compareTo(o2.getCustosGerados()))
+        //         .forEach(p -> System.out.println(p.placa));
     }
 
 
     public void buscarRotasPorDatas() {
 
     }
+
 
 }
