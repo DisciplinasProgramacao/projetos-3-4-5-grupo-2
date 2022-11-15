@@ -13,10 +13,11 @@ public class VeiculoTest {
     */
         
     static Veiculo novoVeiculo;
+    static PeNaEstrada programa;
     static String dados = "Carro;GYE-9781;90000;75000";
     
 
-    @BeforeEach
+   @BeforeEach
     public void init() {
         novoVeiculo = new Carro(dados);
     }
@@ -39,6 +40,16 @@ public class VeiculoTest {
     @Test
     public void calcularGastosTotais(){
         assertEquals(9000, novoVeiculo.calcularGastosTotais());
+    }
+
+    @Test 
+    public void topTresVeiculos(){
+        programa.carregarDadosVeiculo();
+        programa.addRota(programa.localizarVeiculo("GYE-9781"), 100);
+        programa.addRota(programa.localizarVeiculo("GYE-9781"), 200);
+        programa.addRota(programa.localizarVeiculo("GYE-9781"), 300);
+        programa.addRota(programa.localizarVeiculo("GYE-9781"), 400);
+        programa.topTresRotas();
     }
 
 }

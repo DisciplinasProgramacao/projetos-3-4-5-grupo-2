@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class PeNaEstrada {
 
     //#region Atributos
-    private Date data;
+    private static Date data;
     private double distanciaTotal;
-    private LinkedList<Veiculo> veiculos;
+    private static LinkedList<Veiculo> veiculos;
     private static LinkedList<Veiculo> listaVeiculos = new LinkedList<Veiculo>();
     //#endregion
 
@@ -44,15 +44,14 @@ public class PeNaEstrada {
         }
         return veiculoProcurado;
     }
-
     
     /**
      * Método para carregar os veículos do arquivo de texto
      * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos veículos
      */
-    public static void carregarDadosVeiculo(String caminhoArquivo) {
+    public static void carregarDadosVeiculo(String caminho) {
         try{        
-            Path path = Paths.get(caminhoArquivo.concat("/Veiculos.txt"));
+            Path path = Paths.get(caminho.concat("/Veiculos.txt"));
             Scanner sc = new Scanner(path,"UTF-8");
             while(sc.hasNextLine()){
                 String linha = sc.nextLine();
@@ -122,31 +121,22 @@ public class PeNaEstrada {
      * Método para criar os diferentes tipos de veículos 
      * @param linha Linha de dados do arquivo
      */
-    public static  void adicionaVeiculo(String linha) {
-        String[] vetLinha = linha.split(";");
-        Veiculo newVeiculo = null;
-
-        if(vetLinha[0].equals("Carro")){
-            newVeiculo = new Carro(linha);
-        }
-        else if (vetLinha[0].equals("Caminhao")){
-           newVeiculo = new Caminhao(linha);
-        } 
-        else if (vetLinha[0].equals("Utilitario")){
-            newVeiculo = new Utilitario(linha, 0);
-        }
-
-        listaVeiculos.add(newVeiculo);
+    public static void adicionaVeiculo(String linha) {
+        Veiculo newVeiculo = new Veiculo(linha);
+        listaVeiculos.add(newVeiculo); 
     }
 
-
-    public void addRota() {
-
-
+    public static void addRota(Veiculo veiculo, double kmRota) {
+        data = new Date();
+        veiculo.incluirRota(data, kmRota); 
     }
 
-    public void topTresRotas() {
-
+    public static void topTresRotas() {
+        System.out.println("3 veículos com mais rotas realizadas: ");
+        listaVeiculos.stream()
+                .sorted()
+                .limit(3)
+                .forEach(p -> System.out.println(p.placa));
     }
 
     public void adicionarCusto() {

@@ -45,6 +45,7 @@ public class App {
         System.out.println("Seja bem vindo ao app! O que você gostaria de fazer?");
         System.out.println("1 - Informações de um veículo");
         System.out.println("2 - Adicionar novo veículo");
+        System.out.println("3 - Visualizar top 3");
         System.out.println("0 - Sair");
         System.out.print("Digite sua opção: ");
         try {
@@ -168,7 +169,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner teclado = new Scanner(System.in, "UTF-8");
 
-        PeNaEstrada.carregarDadosVeiculo(caminho);    
+        //PeNaEstrada.carregarDadosVeiculo(caminho);    
         
         int opcao;
 
@@ -196,7 +197,20 @@ public class App {
                     PeNaEstrada.adicionaVeiculo(dadosNovoVeiculo);
                     System.out.println("Veiculo criado com sucesso");
                     break;
-                    
+                    case 3:
+                    PeNaEstrada.carregarDadosVeiculo("C:/Users/Cliente Vip Infomac/Desktop/PUC/PM/LPM/projetos-3-4-5-grupo-2");
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("GYE-9781"), 100);
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("GYE-9781"), 100);
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("GYE-9781"), 100);
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("GOQ-4399"), 200);
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("GOQ-4399"), 200);
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("HIB-2593"), 300);
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("HIB-2593"), 300);
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("HIB-2593"), 300);
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("HIB-2593"), 300);
+                    PeNaEstrada.addRota(PeNaEstrada.localizarVeiculo("GLL-4958"), 400);
+                    PeNaEstrada.topTresRotas();
+                    break;
                 }
                 pausa();
             } while (opcao != 0);
