@@ -1,5 +1,5 @@
 public interface ICusto {
 
-    public abstract double retornaCusto();
+    public abstract double retornaCusto(double valorVenda, double kmRodados);
     
 }

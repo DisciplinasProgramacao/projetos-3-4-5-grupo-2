@@ -1,4 +1,4 @@
-public class CustoVariavel implements ICusto {
+public class CustoVariavel {
     private double valor;
     private String descricao;
 
@@ -7,8 +7,7 @@ public class CustoVariavel implements ICusto {
         this.descricao = descricao;
     }
 
-    @Override
-    public double retornaCusto() {
+    public double retornaCustoVariavel() {
         return valor;
     }
     
