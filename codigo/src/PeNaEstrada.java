@@ -131,11 +131,14 @@ public class PeNaEstrada {
     }
 
     public static void topTresRotas() {
-        System.out.println("3 veículos com mais rotas realizadas: ");
+        System.out.println("\n3 veículos com mais rotas realizadas: ");
         listaVeiculos.stream()
-                .sorted((v1, v2) -> v1.maiorQuantRotas(v2))
-                .limit(3)
-                .forEach(p -> System.out.println(p.placa));
+                     .sorted((v1, v2) -> v1.maiorQuantRotas(v2))
+                     .limit(3)
+                     .forEach(p -> System.out.println("\n------------"+
+                                                      "\nPlaca: " + p.placa + 
+                                                      "\n Quantidade de rotas: " + p.getRotas().size()+ 
+                                                      "\n------------"));
     }
 
     public void adicionarCusto() {
@@ -149,6 +152,15 @@ public class PeNaEstrada {
 
     public void kmAvgRotas() {
 
+    }
+
+    public static void listaRotasPorData(Date data) {
+        listaVeiculos.stream()
+                     .forEach(v-> v.getRotas().stream()
+                                              .filter(r-> r.getDate().equals(data))
+                                              .forEach(r->System.out.println("\n------------\nVeiculo: " + v.placa + 
+                                                                             "\nKM da rota: " + r.getKmRota() + 
+                                                                             "\nData: " + r.getDate()+ "\n------------")));
     }
 
     public void listarVeiculosPorCusto() {

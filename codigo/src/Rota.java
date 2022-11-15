@@ -14,5 +14,14 @@ public class Rota {
     }
     //#endregion
 
+    //#region getters and setters
+    public Date getDate(){
+        return this.data;
+    }
+    
+    public double getKmRota(){
+        return this.kmRota;
+    }
+    //#endregion
     
 }

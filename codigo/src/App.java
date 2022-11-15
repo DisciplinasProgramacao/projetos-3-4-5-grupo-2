@@ -8,7 +8,7 @@ public class App {
 
     // #region variáveis auxiliares
     private static Scanner teclado = new Scanner(System.in, "UTF-8");
-    private static String caminho = "C:/SoftwareEngCodes/PUC/Lab Prog Modular/projetos-3-4-5-grupo-2";
+    private static String caminho = "C:/Users/Cliente Vip Infomac/Desktop/PUC/PM/LPM/projetos-3-4-5-grupo-2";
     // #endregion
 
     public static void main(String[] args) throws Exception {
@@ -232,18 +232,24 @@ public class App {
         System.out.println("Veiculo criado com sucesso");
     }
 
-    private static void buscarRotasPorData() {
+    private static void buscarRotasPorData() throws ParseException {
+        Date data = capturarData("Digite a data para a busca. (Digite no formato dd/MM/AAAA)");
+        PeNaEstrada.listaRotasPorData(data);
     }
 
     private static void addRota() throws ParseException {
         String placaVeiculo = digitarPlaca();
-        System.out.println("Em qual data a rota será executada? (Digite no formato dd/MM/AAAA)");
-        String data = teclado.nextLine();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date =  formatter.parse(data);
-        System.out.println("Quantos quilômetro de rota?");
+        Date date = capturarData("Em qual data a rota será executada? (Digite no formato dd/MM/AAAA)");
+        System.out.println("Quantos quilômetros de rota?");
         double km = teclado.nextDouble();
         PeNaEstrada.addRota(date, PeNaEstrada.localizarVeiculo(placaVeiculo), km);
+    }
+
+    private static Date capturarData(String mensagem) throws ParseException{
+        System.out.println(mensagem);
+        String data = teclado.nextLine();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return  formatter.parse(data);   
     }
     // #endregion
 
