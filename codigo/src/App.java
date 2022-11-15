@@ -1,3 +1,6 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -232,7 +235,15 @@ public class App {
     private static void buscarRotasPorData() {
     }
 
-    private static void addRota() {
+    private static void addRota() throws ParseException {
+        String placaVeiculo = digitarPlaca();
+        System.out.println("Em qual data a rota será executada? (Digite no formato dd/MM/AAAA)");
+        String data = teclado.nextLine();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date =  formatter.parse(data);
+        System.out.println("Quantos quilômetro de rota?");
+        double km = teclado.nextDouble();
+        PeNaEstrada.addRota(date, PeNaEstrada.localizarVeiculo(placaVeiculo), km);
     }
     // #endregion
 
