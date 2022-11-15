@@ -16,12 +16,6 @@ public class PeNaEstrada {
     private static LinkedList<Veiculo> listaVeiculos = new LinkedList<Veiculo>();
     // #endregion
 
-    // #region - Construtor
-    public PeNaEstrada() {
-
-    }
-    // #endregion
-
     /**
      * Método para localizar um veículo
      * 
@@ -178,10 +172,6 @@ public class PeNaEstrada {
         // listaVeiculos.stream().sorted((o1, o2) -> o1.getCustosGerados()
         // .compareTo(o2.getCustosGerados()))
         // .forEach(p -> System.out.println(p.placa));
-    }
-
-    public void buscarRotasPorDatas() {
-
     }
 
 }

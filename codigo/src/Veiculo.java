@@ -1,6 +1,8 @@
 import java.util.Date;
 import java.util.LinkedList;
 
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.ElasticCharAppender;
+
 public class Veiculo implements Comparable<Veiculo> {
     
     // #region - Atributos
@@ -35,8 +37,10 @@ public class Veiculo implements Comparable<Veiculo> {
             tpVeiculo = TVeiculo.CARRO;
         } else if (tipo.equals("Caminhao")) {
             tpVeiculo = TVeiculo.CAMINHAO;
-        } else if (tipo.equals("Utilitario")) {
-            tpVeiculo = TVeiculo.UTILITARIO;
+        } else if (tipo.equals("Van")) {
+            tpVeiculo = TVeiculo.VAN;
+        } else if (tipo.equals("Furgao")) {
+            tpVeiculo = TVeiculo.FURGAO;
         }
     }
     // #endregion

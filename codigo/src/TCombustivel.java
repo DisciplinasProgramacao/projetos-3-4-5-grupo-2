@@ -1,4 +1,4 @@
-public enum Combustivel {
+public enum TCombustivel {
     
     GASOLINA(12, 4.80),
     ETANOL(8, 3.65),
@@ -7,7 +7,7 @@ public enum Combustivel {
     private double consumoMedio;
     private double preco;
 
-    private Combustivel(double consumoMedio, double preco) {
+    private TCombustivel(double consumoMedio, double preco) {
         this.consumoMedio = consumoMedio;
         this.preco = preco;
     }

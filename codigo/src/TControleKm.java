@@ -1,7 +1,8 @@
 public enum TControleKm {
 
     CARRO(10000, 0, 0),
-    UTILITARIO(10000, 0, 1000),
+    VAN(10000, 0, 1000),
+    FURGAO(10000, 0, 1000),
     CAMINHAO(0, 20000, 30000);
 
     private int kmAlinhamento;
