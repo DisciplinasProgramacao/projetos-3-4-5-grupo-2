@@ -141,19 +141,6 @@ public class PeNaEstrada {
                                                       "\n------------"));
     }
 
-    public void adicionarCusto() {
-
-    }
-
-    public Veiculo localizarVeiculo() {
-
-        return null;
-    }
-
-    public void kmAvgRotas() {
-
-    }
-
     public static void listaRotasPorData(Date data) {
         listaVeiculos.stream()
                      .forEach(v-> v.getRotas().stream()
@@ -161,6 +148,14 @@ public class PeNaEstrada {
                                               .forEach(r->System.out.println("\n------------\nVeiculo: " + v.placa + 
                                                                              "\nKM da rota: " + r.getKmRota() + 
                                                                              "\nData: " + r.getDate()+ "\n------------")));
+    }
+    
+    public void adicionarCusto() {
+
+    }
+
+    public void kmAvgRotas() {
+
     }
 
     public void listarVeiculosPorCusto() {
