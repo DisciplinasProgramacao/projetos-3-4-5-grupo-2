@@ -37,6 +37,9 @@ public class App {
                 case 5:
                     buscarRotasPorData();
                     break;
+                case 6:
+                    PeNaEstrada.totalKmAvgRotas();
+                    break;
             }
             pausa();
         } while (opcao != 0);
@@ -62,6 +65,7 @@ public class App {
         System.out.println("3 - Top três - Veículos com mais rotas realizadas");
         System.out.println("4 - Adicionar nova rota");
         System.out.println("5 - Buscar rotas por data");
+        System.out.println("6 - Média da quilometragem de todas as rotas");
         System.out.println("0 - Sair");
         System.out.print("Digite sua opção: ");
         try {

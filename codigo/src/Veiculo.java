@@ -7,6 +7,7 @@ public class Veiculo implements Comparable<Veiculo> {
     public String placa;
     private Tanque tanque;
     private LinkedList<Rota> rotas = new LinkedList<Rota>();
+    private LinkedList<CustoVariavel> custosVariaveis = new LinkedList<CustoVariavel>();
     private double valorDeVenda;
     private double kmRodados;
     private TVeiculo tpVeiculo;
@@ -75,6 +76,21 @@ public class Veiculo implements Comparable<Veiculo> {
     public void incluirRota(Date date, double kmRota) {
         Rota newRota = new Rota(date, kmRota);
         rotas.add(newRota);
+    }
+
+    public void incluirCusto(String descricao, double valor){
+        CustoVariavel custoVariavel = new CustoVariavel(valor, descricao);
+        custosVariaveis.add(custoVariavel);
+    }
+
+    /**
+     * Total das rotas percorridas pelo veiculo
+     * @return O valor total das rotas percorridas 
+     */
+    public double totalRotas(){
+        return this.rotas.stream()
+                           .mapToDouble(r-> r.getKmRota())
+                           .sum();
     }
     // #endregion
 

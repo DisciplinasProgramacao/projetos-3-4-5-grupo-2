@@ -130,6 +130,10 @@ public class PeNaEstrada {
         veiculo.incluirRota(data, kmRota);
     }
 
+    public static void addCusto(Veiculo veiculo,String descricao, double valor) {
+        veiculo.incluirCusto(descricao,valor);
+    }
+
     public static void topTresRotas() {
         System.out.println("\n3 veículos com mais rotas realizadas: ");
         listaVeiculos.stream()
@@ -151,11 +155,18 @@ public class PeNaEstrada {
     }
     
     public void adicionarCusto() {
+        System.out.println("\nMédia de rotas realizadas ");
 
     }
 
-    public void kmAvgRotas() {
+    public static void totalKmAvgRotas() {
+        System.out.println("\nMédia da quilometragem de todas as rotas da empresa: ");
+        double mediaRotas = listaVeiculos.stream()
+                     .mapToDouble(Veiculo::totalRotas)
+                     .average()
+                     .getAsDouble();
 
+        System.out.println("\nMédia de rotas realizadas pela empresa em km " + mediaRotas);
     }
 
     public void listarVeiculosPorCusto() {
