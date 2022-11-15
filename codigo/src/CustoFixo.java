@@ -1,4 +1,4 @@
-public class CustoFixo implements ICusto {
+public class CustoFixo {
 
     private double ipva;
     private double seguroTaxa;
@@ -12,16 +12,9 @@ public class CustoFixo implements ICusto {
         this.tpVeiculo = tpVeiculo;
     }
     
-    @Override
-    public double retornaCusto() {
-        return 0;
+    public double retornaCustoFixo(double valorVenda, double kmRodados) {
+        return calcularIPVA(valorVenda) + calcularSeguro(valorVenda) + calcularOutrosCustos(kmRodados);
     }
-
-
-    // protected double calcularGastosTotais() {
-    //     return calcularIPVA() + calcularSeguro() + calcularOutrosCustos();
-    // }
-
 
     private double calcularIPVA(double valorVenda) {
         return valorVenda * tpVeiculo.getIPVA().getTaxaIPVA();
@@ -31,16 +24,20 @@ public class CustoFixo implements ICusto {
         return (valorVenda * tpVeiculo.getSeguro().getSeguroTaxa()) + tpVeiculo.getSeguro().getSeguroFixo();
     }
 
-    private double calcularOutrosCustos() {
-
+    private double calcularOutrosCustos(double kmRodados) {
+        return calcularAlinhamento(kmRodados) + calcularVistoria(kmRodados) + calcularManutencao(kmRodados);
     }
 
-    private double calcularAlinhamento() {
-        return (kmRodados/10000.0) * ALINHAMENTO_VALOR;
+    private double calcularAlinhamento(double kmRodados) {
+        return (kmRodados/tpVeiculo.getControleKm().getKmAlinhamento()) * tpVeiculo.getOutrosCustos().getAlinhamento();
     };
     
-    private double calcularVistoria() {
-        return (kmRodados/10000.0) * VISTORIA_VALOR;
+    private double calcularVistoria(double kmRodados) {
+        return (kmRodados/tpVeiculo.getControleKm().getKmVistoria()) * tpVeiculo.getOutrosCustos().getVistoria();
+    };
+
+    private double calcularManutencao(double kmRodados) {
+        return (kmRodados/tpVeiculo.getControleKm().getKmManutencao()) * tpVeiculo.getOutrosCustos().getManutencao();
     };
 
 }

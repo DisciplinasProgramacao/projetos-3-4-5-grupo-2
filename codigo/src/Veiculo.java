@@ -38,16 +38,17 @@ public abstract class Veiculo {
         }
     }
 
-    public double retornaCustosTotais(){
+    public double retornaCustosTotais(double valor, String descricao){
         CustoFixo custoFixo = new CustoFixo(tpVeiculo);
-        return custoFixo.calcularIPVA(valorDeVenda) /* + OS OUTROS CUSTOS */;
+        CustoVariavel custoVariavel = new CustoVariavel(valor, descricao);
+
+        return custoFixo.retornaCustoFixo(this.valorDeVenda, this.kmRodados) + custoVariavel.retornaCustoVariavel();
     }
 
     protected void verificarKmRodados() {
 
     };
 
-    
     @Override
     public String toString() {
         return String.format("%s;%.2f;%d;", this.placa, this.valorDeVenda, this.kmRodados).toString();
