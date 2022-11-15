@@ -1,7 +1,8 @@
 public enum Tipva {
 
     CARRO(0.04),
-    UTILITARIO(0.01),
+    VAN(0.01),
+    FURGAO(0.01),
     CAMINHAO(0.03);
 
     private double valorIPVA;

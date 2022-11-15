@@ -1,7 +1,8 @@
 public enum TOutrosCustos {
 
     CARRO(80, 0, 0),
-    UTILITARIO(120, 0, 500),
+    VAN(120, 0, 500),
+    FURGAO(120, 0, 500),
     CAMINHAO(0, 1000, 1000);
 
     private int alinhamento;

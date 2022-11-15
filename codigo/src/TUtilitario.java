@@ -1,6 +1,11 @@
 public enum TUtilitario {
-    VAN(),
-    FURGAO();
+    VAN(60),
+    FURGAO(80);
 
+    private double capacidadeMax;
+
+    private TUtilitario(double capacidadeMax) {
+        this.capacidadeMax = capacidadeMax;
+    }
     
 }
