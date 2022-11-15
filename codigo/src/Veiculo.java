@@ -131,6 +131,10 @@ public class Veiculo implements Comparable<Veiculo> {
     public LinkedList<Rota> getRotas() {
         return rotas;
     }
+
+    public String getPlaca() {
+        return placa;
+    }
     // #endregion
 
 }
