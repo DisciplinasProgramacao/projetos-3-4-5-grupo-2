@@ -141,7 +141,7 @@ public class PeNaEstrada {
                      .limit(3)
                      .forEach(p -> System.out.println("\n------------"+
                                                       "\nPlaca: " + p.placa + 
-                                                      "\n Quantidade de rotas: " + p.getRotas().size()+ 
+                                                      "\nQuantidade de rotas: " + p.getRotas().size()+ 
                                                       "\n------------"));
     }
 
@@ -149,9 +149,11 @@ public class PeNaEstrada {
         listaVeiculos.stream()
                      .forEach(v-> v.getRotas().stream()
                                               .filter(r-> r.getDate().equals(data))
-                                              .forEach(r->System.out.println("\n------------\nVeiculo: " + v.placa + 
+                                              .forEach(r->System.out.println("\n------------"+
+                                                                             "\nVeiculo: " + v.placa + 
                                                                              "\nKM da rota: " + r.getKmRota() + 
-                                                                             "\nData: " + r.getDate()+ "\n------------")));
+                                                                             "\nData: " + r.getDate()+ 
+                                                                             "\n------------")));
     }
     
     public void adicionarCusto() {
