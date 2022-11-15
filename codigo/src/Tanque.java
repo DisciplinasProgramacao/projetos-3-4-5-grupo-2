@@ -16,5 +16,9 @@ public class Tanque {
     public void reduzirConsumoDaRota() {
         
     }
+
+    public void verificarCombustivelParaRota() {
+        
+    }
     
 }

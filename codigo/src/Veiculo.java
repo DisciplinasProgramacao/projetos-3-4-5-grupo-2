@@ -53,10 +53,6 @@ public class Veiculo implements Comparable<Veiculo> {
         return custosGerados;
     }
 
-    protected void verificarKmRodados() {
-
-    };
-
     /**
      * Método para retornar o método toString() da classe veículo
      * 
