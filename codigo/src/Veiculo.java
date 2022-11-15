@@ -65,8 +65,8 @@ public class Veiculo implements Comparable<Veiculo> {
 
     @Override
     public int compareTo(Veiculo o) {
-        if(this.rotas.size()> o.rotas.size()) return 1;
-        else if(this.rotas.size() < o.rotas.size()) return -1;
+        if(this.rotas.size()< o.rotas.size()) return 1;
+        else if(this.rotas.size() > o.rotas.size()) return -1;
         return 0;
     }   
 
