@@ -63,7 +63,6 @@ public class PeNaEstrada {
         }
     }
 
-
     /**
      * Método para salvar os veículos
      * @param caminhoArquivo Caminho do arquivo de texto onde os objetos serão salvos
