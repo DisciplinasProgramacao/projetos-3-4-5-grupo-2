@@ -156,10 +156,6 @@ public class PeNaEstrada {
                                                                              "\n------------")));
     }
     
-    public void adicionarCusto() {
-        System.out.println("\nMédia de rotas realizadas ");
-
-    }
 
     public static void totalKmAvgRotas() {
         System.out.println("\nMédia da quilometragem de todas as rotas da empresa: ");
@@ -174,12 +170,14 @@ public class PeNaEstrada {
     public void listarVeiculosPorCusto() {
         System.out.println("Lista de veículos com custos gerados em ordem decrescente: ");
 
-        listaVeiculos.stream()
-                .sorted((Comparator.comparingDouble(Veiculo::getCustosGerados)).reversed())
-                .forEach(v-> System.out.println("\n------------"+
-                                                "\nVeiculo: " + v.getPlaca() + 
-                                                "\nCustos gerados: " + v.getCustosGerados() + 
-                                                "\n------------"));
+        Collections.reverse(listaVeiculos
+                .stream()
+                .sorted((Comparator.comparingDouble(Veiculo::getCustosGerados)))
+                .collect(Collectors.toList()));
+
+        // listaVeiculos.stream().sorted((o1, o2) -> o1.getCustosGerados()
+        // .compareTo(o2.getCustosGerados()))
+        // .forEach(p -> System.out.println(p.placa));
     }
 
     public void buscarRotasPorDatas() {

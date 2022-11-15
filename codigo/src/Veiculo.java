@@ -57,6 +57,16 @@ public class Veiculo implements Comparable<Veiculo> {
 
     };
 
+        /**
+     * Soma todas as rotas de determinado veiculo
+     * @return soma as rotas
+     */
+    public double totalRotas(){
+        return this.rotas.stream()
+                .mapToDouble(r-> r.getKmRota())
+                .sum() + this.kmRodados;
+    }
+    
     /**
      * Método para retornar o método toString() da classe veículo
      * 
@@ -67,9 +77,9 @@ public class Veiculo implements Comparable<Veiculo> {
     }
 
     public int maiorQuantRotas(Veiculo o) {
-        if (this.rotas.size() < o.rotas.size())
+        if (this.totalRotas() < o.totalRotas())
             return 1;
-        else if (this.rotas.size() > o.rotas.size())
+        else if (this.totalRotas() > o.totalRotas())
             return -1;
         return 0;
     }
@@ -100,15 +110,6 @@ public class Veiculo implements Comparable<Veiculo> {
                 .sum();
     }
 
-    /**
-     * Total das rotas percorridas pelo veiculo
-     * @return O valor total das rotas percorridas 
-     */
-    public double totalRotas(){
-        return this.rotas.stream()
-                           .mapToDouble(r-> r.getKmRota())
-                           .sum();
-    }
     // #endregion
 
     // #region Override

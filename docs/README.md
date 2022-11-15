@@ -7,3 +7,10 @@ A documentação do projeto é composta pelos seguintes itens:
  - [Instruções para uso](/docs/instrucoes.md)
  - [Link para o vídeo de apresentação (edite este mesmo md para colocar sua URL)](http://insira.aqui.sua.URL)
 
+
+## TUtilitario - Implementar
+## Implementar tanque 
+## Testar os métodos 
+## Arrumar a UML 
+## Confirmar sobre apresentação 
+## Criação da lista de veiculos
