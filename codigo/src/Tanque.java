@@ -1,6 +1,6 @@
 public class Tanque {
     
-    private int capacidade;
+    private double capacidade;
     private double combustivelAtual;
     private double consumoMedio;
     private double preco;
@@ -18,7 +18,7 @@ public class Tanque {
     }
 
     public void verificarCombustivelParaRota() {
-        
+
     }
     
 }
