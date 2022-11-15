@@ -42,12 +42,13 @@ public class Veiculo implements Comparable<Veiculo> {
     // #endregion
 
     // #region métodos
+
+    
     public double retornaCustosTotais(double valor, String descricao) {
         CustoFixo custoFixo = new CustoFixo(tpVeiculo);
-        CustoVariavel custoVariavel = new CustoVariavel(valor, descricao);
-
+     
         this.custosGerados = (custoFixo.retornaCustoFixo(this.valorDeVenda, this.kmRodados)
-                + custoVariavel.retornaCustoVariavel());
+                + this.somaCustosVariaveis());
 
         return custosGerados;
     }
@@ -78,9 +79,25 @@ public class Veiculo implements Comparable<Veiculo> {
         rotas.add(newRota);
     }
 
+    /**
+     * Inclui um novo custo variavel ao veículo
+     * @param descricao
+     * @param valor
+     */
+
     public void incluirCusto(String descricao, double valor){
         CustoVariavel custoVariavel = new CustoVariavel(valor, descricao);
         custosVariaveis.add(custoVariavel);
+    }
+
+    /**
+     * Soma todos os custos variaveis de determinado veículo
+     * @return soma dos custos variaveis
+     */
+    private double somaCustosVariaveis(){
+        return this.custosVariaveis.stream()
+                .mapToDouble(c-> c.getValor())
+                .sum();
     }
 
     /**

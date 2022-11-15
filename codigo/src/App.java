@@ -40,6 +40,9 @@ public class App {
                 case 6:
                     PeNaEstrada.totalKmAvgRotas();
                     break;
+                case 7:
+                    addCusto();
+                    break;
             }
             pausa();
         } while (opcao != 0);
@@ -66,6 +69,7 @@ public class App {
         System.out.println("4 - Adicionar nova rota");
         System.out.println("5 - Buscar rotas por data");
         System.out.println("6 - Média da quilometragem de todas as rotas");
+        System.out.println("7 - Adicionar novo custo");
         System.out.println("0 - Sair");
         System.out.print("Digite sua opção: ");
         try {
@@ -247,6 +251,19 @@ public class App {
         System.out.println("Quantos quilômetros de rota?");
         double km = teclado.nextDouble();
         PeNaEstrada.addRota(date, PeNaEstrada.localizarVeiculo(placaVeiculo), km);
+    }
+
+    private static void addCusto() {
+        String placaVeiculo = digitarPlaca();
+        System.out.println("Digite a descrição do custo");
+
+        String descricao = teclado.nextLine();
+
+        System.out.println("Digite o valor do custo");
+
+        double valor = teclado.nextDouble();
+
+        PeNaEstrada.addCusto(PeNaEstrada.localizarVeiculo(placaVeiculo),descricao, valor);
     }
 
     private static Date capturarData(String mensagem) throws ParseException{
