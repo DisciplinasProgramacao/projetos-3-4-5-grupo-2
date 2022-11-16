@@ -27,7 +27,7 @@ public class PeNaEstrada {
         Veiculo veiculoProcurado = null;
 
         for (int i = 0; i < listaVeiculos.size(); i++) {
-            if (listaVeiculos.get(i).placa.equals(placa)) {
+            if (listaVeiculos.get(i).getPlaca().equals(placa)) {
                 veiculoProcurado = listaVeiculos.get(i);
                 break;
             }
@@ -144,7 +144,7 @@ public class PeNaEstrada {
                      .sorted((v1, v2) -> v1.maiorQuantRotas(v2))
                      .limit(3)
                      .forEach(p -> System.out.println("\n------------"+
-                                                      "\nPlaca: " + p.placa + 
+                                                      "\nPlaca: " + p.getPlaca() + 
                                                       "\nQuantidade de rotas: " + p.getRotas().size()+ 
                                                       "\n------------"));
     }
@@ -154,13 +154,12 @@ public class PeNaEstrada {
                      .forEach(v-> v.getRotas().stream()
                                               .filter(r-> r.getDate().equals(data))
                                               .forEach(r->System.out.println("\n------------"+
-                                                                             "\nVeiculo: " + v.placa + 
+                                                                             "\nVeiculo: " + v.getPlaca() + 
                                                                              "\nKM da rota: " + r.getKmRota() + 
                                                                              "\nData: " + r.getDate()+ 
                                                                              "\n------------")));
     }
     
-
     public static void totalKmAvgRotas() {
         System.out.println("\nMédia da quilometragem de todas as rotas da empresa: ");
         double mediaRotas = listaVeiculos.stream()

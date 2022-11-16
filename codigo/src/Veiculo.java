@@ -6,7 +6,7 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.Elasti
 public class Veiculo implements Comparable<Veiculo> {
     
     // #region - Atributos
-    public String placa;
+    private String placa;
     private Tanque tanque;
     private LinkedList<Rota> rotas = new LinkedList<Rota>();
     private LinkedList<CustoVariavel> custosVariaveis = new LinkedList<CustoVariavel>();
