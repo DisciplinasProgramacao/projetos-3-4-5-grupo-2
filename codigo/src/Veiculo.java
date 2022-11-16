@@ -94,6 +94,7 @@ public class Veiculo implements Comparable<Veiculo> {
      * @param kmRota Comprimento da rota em KM
      */
     public void incluirRota(Date date, double kmRota) {
+        tanque.verificarCombustivelParaRota(kmRota);
         Rota newRota = new Rota(date, kmRota);
         rotas.add(newRota);
     }
