@@ -127,7 +127,11 @@ public class PeNaEstrada {
      * @param kmRota A distância total da rota em KM
      */
     public static void addRota(Date data, Veiculo veiculo, double kmRota) {
-        veiculo.incluirRota(data, kmRota);
+        if(data !=null && veiculo != null && kmRota > 0.0){
+            veiculo.incluirRota(data, kmRota);
+        }else{
+            System.out.println("Não foi possível adicionar a rota");
+        }
     }
 
     public static void addCusto(Veiculo veiculo,String descricao, double valor) {
