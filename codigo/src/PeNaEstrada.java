@@ -120,6 +120,12 @@ public class PeNaEstrada {
         listaVeiculos.add(newVeiculo);
     }
 
+    /**
+     * Método para adicionar a rota ao veículo
+     * @param data A data do tipo data
+     * @param veiculo O veículo que terá a rota incluída
+     * @param kmRota A distância total da rota em KM
+     */
     public static void addRota(Date data, Veiculo veiculo, double kmRota) {
         veiculo.incluirRota(data, kmRota);
     }

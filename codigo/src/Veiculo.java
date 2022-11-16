@@ -88,6 +88,11 @@ public class Veiculo implements Comparable<Veiculo> {
         return 0;
     }
 
+    /**
+     * Método para incluir rota em um veículo
+     * @param date Data dd/mm/aaaa
+     * @param kmRota Comprimento da rota em KM
+     */
     public void incluirRota(Date date, double kmRota) {
         Rota newRota = new Rota(date, kmRota);
         rotas.add(newRota);
