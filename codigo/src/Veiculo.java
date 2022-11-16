@@ -81,9 +81,9 @@ public class Veiculo implements Comparable<Veiculo> {
     }
 
     public int maiorQuantRotas(Veiculo o) {
-        if (this.totalRotas() < o.totalRotas())
+        if (this.rotas.size() < o.rotas.size())
             return 1;
-        else if (this.totalRotas() > o.totalRotas())
+        else if (this.rotas.size()> o.rotas.size())
             return -1;
         return 0;
     }
