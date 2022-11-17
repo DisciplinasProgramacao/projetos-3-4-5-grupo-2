@@ -14,8 +14,12 @@ public class Tanque {
         
     }
     
-    double quantoAndo(){
-        return this.combustivelAtual*tCombustivel.kmPorLitro();
+    public double kmPercorridosCombustivelAtual(){
+        return this.combustivelAtual * tCombustivel.getConsumoMedio();
+    }
+
+    public double kmPercorridosCombustivelTotal(){
+        return this.capacidadeMax * tCombustivel.getConsumoMedio();
     }
 
     public void completarTanque() {
@@ -23,11 +27,11 @@ public class Tanque {
     }
 
     public void reduzirConsumoDaRota(double kmRota) {
-        this.combustivelAtual -= kmRota/this.consumoMedio;
+        this.combustivelAtual -= kmRota/tCombustivel.getConsumoMedio();
     }
 
     public void verificarCombustivelParaRota(double kmRota) {
-        if ((this.combustivelAtual * this.consumoMedio) < kmRota){
+        if (kmPercorridosCombustivelAtual() < kmRota){
             completarTanque();
         }
     }
@@ -36,7 +40,4 @@ public class Tanque {
         return this.combustivelAtual;
     }
 
-    public void setConsumoMedio(double consumo){
-        this.consumoMedio = consumo;
-    }
 }

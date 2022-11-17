@@ -12,4 +12,21 @@ public enum TCombustivel {
         this.preco = preco;
     }
 
+    public double getConsumoMedio() {
+        return consumoMedio;
+    }
+
+    public void setConsumoMedio(double consumoMedio) {
+        this.consumoMedio = consumoMedio;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+
 }
