@@ -3,7 +3,7 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.ElasticCharAppender;
 
-public class Veiculo implements Comparable<Veiculo> {
+public abstract class Veiculo implements Comparable<Veiculo> {
     
     // #region - Atributos
     private String placa;
@@ -118,6 +118,39 @@ public class Veiculo implements Comparable<Veiculo> {
         return this.custosVariaveis.stream()
                 .mapToDouble(c-> c.getValor())
                 .sum();
+    }
+
+    /**
+     * Calcular IPVA do veículo 
+     * @param ipva Porcentagem real do IPVA de acordo com o tipo de veículo.
+     * @return A multiplicação da porcentagem pelo valor de venda
+     */
+    protected double calcularIPVA(double ipva) {
+        return this.valorDeVenda * ipva;
+    };
+
+    /**
+     * Calcular seguro do veículo
+     * @param seguroTaxa Porcentagem real do seguro de acordo com o tipo de veículo.
+     * @param seguroFixo Ao valor a ser adicionado ao valor total do seguro.
+     * @return A multiplicação da porcentagem pelo valor de venda + segurofixo.
+     */
+    protected double calcularSeguro(double seguroTaxa, double seguroFixo) {
+        return (this.valorDeVenda * seguroTaxa) + seguroFixo;
+    };
+
+    protected abstract double calcularOutrosCustos();
+
+    protected abstract double calcularIPVA();
+
+    protected abstract double calcularSeguro();
+
+    /**
+     * Calcular gastos totais 
+     * @return A soma do cálculo do IPVA com seguro com outros custos.
+     */
+    protected double calcularGastosTotais() {
+        return calcularIPVA() + calcularSeguro() + calcularOutrosCustos();
     }
 
     // #endregion
