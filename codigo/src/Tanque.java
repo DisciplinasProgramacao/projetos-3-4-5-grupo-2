@@ -1,12 +1,16 @@
 public class Tanque {
     
+
     private double capacidade;
     private double combustivelAtual;
-    private double consumoMedio;
-    private double preco;
+    private TCombustivel tpCombustivel;
 
     public void verificarTanque() {
         
+    }
+    
+    double quantoAndo(){
+        return this.combustivelAtual*tpCombustivel.kmPorLitro();
     }
 
     public void completarTanque() {

@@ -1,13 +1,5 @@
 public class Carro extends Veiculo{
 
-    //#region - Atributos
-    private static final double TANQUE_MAX = 50;
-    private static final double IPVA = 0.04;
-    private static final double SEGURO_TAXA = 0.05;
-    private static final double SEGURO_FIXO = 300;
-    private static final double ALINHAMENTO_VALOR = 80;
-    //#endregion
-
     //#region - Construtores
     /**
      * Método construtor do carro o método construtor da classe veículo
@@ -22,7 +14,7 @@ public class Carro extends Veiculo{
      * Método para calcular o IPVA do carro chamando o método da classe veículo
      */
     public double calcularIPVA(){
-        return super.calcularIPVA(IPVA);
+        return super.calcularIPVA(TCustosFixos.CARRO.getIpva());
     };
 
     //#region - Métodos
@@ -30,7 +22,7 @@ public class Carro extends Veiculo{
      * Método para calcular o seguro do carro chamando o método da classe veículo
      */
     public double calcularSeguro() {
-        return super.calcularSeguro(SEGURO_TAXA, SEGURO_FIXO);
+        return super.calcularSeguro(TCustosFixos.CARRO.getSeguroTaxa(), TCustosFixos.CARRO.getSeguroFixo());
     };
 
     /**
@@ -44,7 +36,7 @@ public class Carro extends Veiculo{
      * Método para calcular o outros custos do carro
      */
     private double calcularAlinhamento() {
-        return (kmRodados/10000.0) * ALINHAMENTO_VALOR;
+        return (kmRodados/10000.0) * TCustosFixos.CARRO.getAlinhamento();
     }    
 
     @Override

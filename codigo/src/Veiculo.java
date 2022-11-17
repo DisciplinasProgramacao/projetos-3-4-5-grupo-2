@@ -1,19 +1,16 @@
 import java.util.Date;
 import java.util.LinkedList;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.ElasticCharAppender;
-
 public abstract class Veiculo implements Comparable<Veiculo> {
     
     // #region - Atributos
-    private String placa;
-    private Tanque tanque;
-    private LinkedList<Rota> rotas = new LinkedList<Rota>();
-    private LinkedList<CustoVariavel> custosVariaveis = new LinkedList<CustoVariavel>();
-    private double valorDeVenda;
-    private double kmRodados;
-    private TVeiculo tpVeiculo;
-    private double custosGerados;
+    protected String placa;
+    protected Tanque tanque;
+    protected LinkedList<Rota> rotas = new LinkedList<Rota>();
+    protected LinkedList<CustoVariavel> custosVariaveis = new LinkedList<CustoVariavel>();
+    protected double valorDeVenda;
+    protected double kmRodados;
+    protected double custosGerados;
     // #endregion
 
     // #region - Construtores
@@ -24,36 +21,21 @@ public abstract class Veiculo implements Comparable<Veiculo> {
      */
     public Veiculo(String dados) {
         String[] vetDados = dados.split(";");
-        defineTipoVeiculo(vetDados[0]);
-
         this.placa = vetDados[1];
         this.valorDeVenda = Double.parseDouble(vetDados[2]);
         this.kmRodados = Double.parseDouble(vetDados[3]);
         this.custosGerados = 0;
-    }
-
-    private void defineTipoVeiculo(String tipo) {
-        if (tipo.equals("Carro")) {
-            tpVeiculo = TVeiculo.CARRO;
-        } else if (tipo.equals("Caminhao")) {
-            tpVeiculo = TVeiculo.CAMINHAO;
-        } else if (tipo.equals("Van")) {
-            tpVeiculo = TVeiculo.VAN;
-        } else if (tipo.equals("Furgao")) {
-            tpVeiculo = TVeiculo.FURGAO;
-        }
     }
     // #endregion
 
     // #region métodos
 
     
-    public double retornaCustosTotais(double valor, String descricao) {
-        CustoFixo custoFixo = new CustoFixo(tpVeiculo);
-     
-        this.custosGerados = (custoFixo.retornaCustoFixo(this.valorDeVenda, this.kmRodados)
-                + this.somaCustosVariaveis());
+    public double retornaCustosTotais(double valor, String descricao) {     
+        this.custosGerados = calcularIPVA() + calcularSeguro() + calcularOutrosCustos()
+                + this.somaCustosVariaveis();
 
+                ipva = valorDeVenda*meuCusto.getIpva();
         return custosGerados;
     }
 
@@ -139,19 +121,11 @@ public abstract class Veiculo implements Comparable<Veiculo> {
         return (this.valorDeVenda * seguroTaxa) + seguroFixo;
     };
 
-    protected abstract double calcularOutrosCustos();
+     protected abstract double calcularOutrosCustos();
 
-    protected abstract double calcularIPVA();
+     protected abstract double calcularIPVA();
 
-    protected abstract double calcularSeguro();
-
-    /**
-     * Calcular gastos totais 
-     * @return A soma do cálculo do IPVA com seguro com outros custos.
-     */
-    protected double calcularGastosTotais() {
-        return calcularIPVA() + calcularSeguro() + calcularOutrosCustos();
-    }
+     protected abstract double calcularSeguro();
 
     // #endregion
 

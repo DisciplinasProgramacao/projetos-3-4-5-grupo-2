@@ -2,10 +2,6 @@ public class Utilitario extends Veiculo{
 
     //#region - Atributos
     private double tanqueMax;
-    private static final double IPVA = 0.03;
-    private static final double SEGURO_TAXA = 0.03;
-    private static final double ALINHAMENTO_VALOR = 120;
-    private static final double VISTORIA_VALOR = 500;
     //#endregion
 
     /**
@@ -13,9 +9,9 @@ public class Utilitario extends Veiculo{
      * @param dados Linha de dados 
      * @param tanque Capacidade em litros do tanque
      */
-    public Utilitario(String dados, int tanque) {
+    public Utilitario(String dados, TUtilitario qual) {
         super(dados);
-        this.tanqueMax = tanque;
+        this.tanqueMax = qual.tanque()
     }
 
     private boolean verificarTanque(int tanque) {
@@ -26,7 +22,7 @@ public class Utilitario extends Veiculo{
      * Método para calcular o IPVA do utilitário
      */
     public double calcularIPVA(){
-        return super.calcularIPVA(IPVA);
+        return super.calcularIPVA(TCustosFixos.UTILITARIO.getIpva());
     };
 
     //#region - Métodos
@@ -34,7 +30,7 @@ public class Utilitario extends Veiculo{
      * Método para calcular o seguro do utilitário
      */
     public double calcularSeguro() {
-        return super.calcularSeguro(SEGURO_TAXA, 0);
+        return super.calcularSeguro(TCustosFixos.UTILITARIO.getSeguroTaxa(), TCustosFixos.UTILITARIO.getSeguroFixo());
     };
      
     /**
@@ -45,11 +41,11 @@ public class Utilitario extends Veiculo{
     }
 
     private double calcularAlinhamento() {
-        return (kmRodados/10000.0) * ALINHAMENTO_VALOR;
+        return (kmRodados/10000.0) * TCustosFixos.UTILITARIO.getAlinhamento();
     };
     
     private double calcularVistoria() {
-        return (kmRodados/10000.0) * VISTORIA_VALOR;
+        return (kmRodados/10000.0) * TCustosFixos.UTILITARIO.getVistoria();
     };
 
     @Override
