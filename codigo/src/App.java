@@ -43,11 +43,46 @@ public class App {
                 case 7:
                     addCusto();
                     break;
+                case 8:
+                    menuAbastecimento();
+                    break;
             }
             pausa();
         } while (opcao != 0);
         teclado.close();
 
+    }
+
+    private static void menuAbastecimento() {
+        String placaVeiculo = digitarPlaca();
+        System.out.println("Informe o combustível para abastecimento");
+        System.out.println("1 - Gasolina");
+        System.out.println("2 - Etanol");
+        System.out.println("3 - Disel");
+        System.out.println("0 - Sair");
+        System.out.print("Digite sua opção: ");
+        int opcao;
+
+        try {
+            opcao = teclado.nextInt();
+            teclado.nextLine();
+
+        } catch (InputMismatchException ie) {
+            opcao = 0;
+        }        
+
+        switch (opcao) {
+            case 1:
+                PeNaEstrada.
+                break;
+            case 2:
+                addVeiculo();
+                break;
+            case 3:
+                PeNaEstrada.topTresRotas();
+                break;
+        }      
+        pausa(); 
     }
 
     // #region - Menus
@@ -70,6 +105,7 @@ public class App {
         System.out.println("5 - Buscar rotas por data");
         System.out.println("6 - Média da quilometragem de todas as rotas");
         System.out.println("7 - Adicionar novo custo");
+        System.out.println("8 - Abastecer veículo");
         System.out.println("0 - Sair");
         System.out.print("Digite sua opção: ");
         try {

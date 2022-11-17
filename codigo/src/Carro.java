@@ -9,9 +9,7 @@ public class Carro extends Veiculo{
     }
     //#endregion
     
-
     //#region - Métodos
-
     /**
      * Método para calcular o outros custos do carro chamando o método interno
      */

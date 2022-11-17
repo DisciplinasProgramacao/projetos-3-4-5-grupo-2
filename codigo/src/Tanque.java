@@ -10,10 +10,6 @@ public class Tanque {
         this.tCombustivel = tCombustivel;
     }
 
-    public void verificarTanque() {
-        
-    }
-    
     public double kmPercorridosCombustivelAtual(){
         return this.combustivelAtual * tCombustivel.getConsumoMedio();
     }
@@ -24,6 +20,7 @@ public class Tanque {
 
     public void completarTanque() {
         this.combustivelAtual = this.capacidadeMax;
+        
     }
 
     public void reduzirConsumoDaRota(double kmRota) {
@@ -38,6 +35,10 @@ public class Tanque {
     
     public double getCombustivelAtual(){
         return this.combustivelAtual;
+    }
+
+    public TCombustivel gettCombustivel() {
+        return tCombustivel;
     }
 
 }

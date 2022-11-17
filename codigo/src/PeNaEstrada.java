@@ -183,4 +183,10 @@ public class PeNaEstrada {
         // .forEach(p -> System.out.println(p.placa));
     }
 
+    public void abastecerVeiculo(Veiculo v, TCombustivel tpCombustivel){
+        if (v. 
+        v.tanque.completarTanque();
+        
+    }
+
 }
