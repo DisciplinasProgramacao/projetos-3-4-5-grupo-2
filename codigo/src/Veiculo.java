@@ -5,18 +5,17 @@ public abstract class Veiculo implements Comparable<Veiculo> {
     
     // #region - Atributos
     protected String placa;
-    protected Tanque tanque;
-    protected LinkedList<Rota> rotas = new LinkedList<Rota>();
-    protected LinkedList<CustoVariavel> custosVariaveis = new LinkedList<CustoVariavel>();
     protected double valorDeVenda;
     protected double kmRodados;
     protected double custosGerados;
+    protected Tanque tanque;
+    protected LinkedList<Rota> rotas = new LinkedList<Rota>();
+    protected LinkedList<CustoVariavel> custosVariaveis = new LinkedList<CustoVariavel>();
     // #endregion
 
     // #region - Construtores
     /**
      * Construtor veículos
-     * 
      * @param dados String de dados proveniente do arquivo Veiculos.txt
      */
     public Veiculo(String dados) {
@@ -30,20 +29,19 @@ public abstract class Veiculo implements Comparable<Veiculo> {
 
     // #region métodos
 
-    
-    public double retornaCustosTotais(double valor, String descricao) {     
-        this.custosGerados = calcularIPVA() + calcularSeguro() + calcularOutrosCustos()
-                + this.somaCustosVariaveis();
+    protected abstract double calcularOutrosCustos();
 
-                ipva = valorDeVenda*meuCusto.getIpva();
+    public double retornaCustosTotais(TCustosFixos custoFixoVeiculo) {     
+        
+        double custoIpva = (double) valorDeVenda * custoFixoVeiculo.getIpva();
+        double custoSeguro = (double) (valorDeVenda * custoFixoVeiculo.getSeguroTaxa()) + custoFixoVeiculo.getSeguroFixo();
+
+        this.custosGerados = custoIpva + custoSeguro + calcularOutrosCustos() + somaCustosVariaveis();
+
         return custosGerados;
     }
 
-    protected void verificarKmRodados() {
-
-    };
-
-        /**
+    /**
      * Soma todas as rotas de determinado veiculo
      * @return soma as rotas
      */
@@ -55,7 +53,6 @@ public abstract class Veiculo implements Comparable<Veiculo> {
     
     /**
      * Método para retornar o método toString() da classe veículo
-     * 
      * @return Método toString()
      */
     public String dadosVeiculo() {
@@ -86,7 +83,6 @@ public abstract class Veiculo implements Comparable<Veiculo> {
      * @param descricao
      * @param valor
      */
-
     public void incluirCusto(String descricao, double valor){
         CustoVariavel custoVariavel = new CustoVariavel(valor, descricao);
         custosVariaveis.add(custoVariavel);
@@ -98,35 +94,9 @@ public abstract class Veiculo implements Comparable<Veiculo> {
      */
     private double somaCustosVariaveis(){
         return this.custosVariaveis.stream()
-                .mapToDouble(c-> c.getValor())
+                .mapToDouble(c-> c.retornaCustoVariavel())
                 .sum();
     }
-
-    /**
-     * Calcular IPVA do veículo 
-     * @param ipva Porcentagem real do IPVA de acordo com o tipo de veículo.
-     * @return A multiplicação da porcentagem pelo valor de venda
-     */
-    protected double calcularIPVA(double ipva) {
-        return this.valorDeVenda * ipva;
-    };
-
-    /**
-     * Calcular seguro do veículo
-     * @param seguroTaxa Porcentagem real do seguro de acordo com o tipo de veículo.
-     * @param seguroFixo Ao valor a ser adicionado ao valor total do seguro.
-     * @return A multiplicação da porcentagem pelo valor de venda + segurofixo.
-     */
-    protected double calcularSeguro(double seguroTaxa, double seguroFixo) {
-        return (this.valorDeVenda * seguroTaxa) + seguroFixo;
-    };
-
-     protected abstract double calcularOutrosCustos();
-
-     protected abstract double calcularIPVA();
-
-     protected abstract double calcularSeguro();
-
     // #endregion
 
     // #region Override

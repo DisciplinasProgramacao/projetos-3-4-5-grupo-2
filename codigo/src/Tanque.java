@@ -1,20 +1,25 @@
 public class Tanque {
     
-
-    private double capacidade;
+    private double capacidadeMax;
     private double combustivelAtual;
-    private TCombustivel tpCombustivel;
+    private TCombustivel tCombustivel;
+
+    public Tanque(double capacidadeMax, double combustivelAtual, TCombustivel tCombustivel) {
+        this.capacidadeMax = capacidadeMax;
+        this.combustivelAtual = combustivelAtual;
+        this.tCombustivel = tCombustivel;
+    }
 
     public void verificarTanque() {
         
     }
     
     double quantoAndo(){
-        return this.combustivelAtual*tpCombustivel.kmPorLitro();
+        return this.combustivelAtual*tCombustivel.kmPorLitro();
     }
 
     public void completarTanque() {
-        this.combustivelAtual = this.capacidade;
+        this.combustivelAtual = this.capacidadeMax;
     }
 
     public void reduzirConsumoDaRota(double kmRota) {

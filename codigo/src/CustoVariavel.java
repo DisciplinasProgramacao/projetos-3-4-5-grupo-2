@@ -10,9 +10,4 @@ public class CustoVariavel {
     public double retornaCustoVariavel() {
         return valor;
     }
-
-    public double getValor(){
-        return this.valor;
-    }
-    
 }

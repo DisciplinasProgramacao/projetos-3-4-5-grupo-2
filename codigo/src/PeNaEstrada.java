@@ -113,10 +113,10 @@ public class PeNaEstrada {
     /**
      * Método para criar os diferentes tipos de veículos
      * 
-     * @param linha Linha de dados do arquivo
+     * @param dadosVeiculo Linha de dados do arquivo
      */
-    public static void adicionaVeiculo(String linha) {
-        Veiculo newVeiculo = new Veiculo(linha);
+    public static void adicionaVeiculo(String dadosVeiculo) {
+        Veiculo newVeiculo = new Veiculo(dadosVeiculo);
         listaVeiculos.add(newVeiculo);
     }
 

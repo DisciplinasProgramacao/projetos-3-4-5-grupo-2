@@ -7,5 +7,10 @@ public enum TUtilitario {
     private TUtilitario(double capacidadeMax) {
         this.capacidadeMax = capacidadeMax;
     }
+
+    public double tanque() {
+        return capacidadeMax;
+    }
+    
     
 }

@@ -1,7 +1,7 @@
 public enum TCustosFixos {
     CARRO(0.04, 0.05, 300, 80, 0, 0),
     CAMINHAO(0.03, 0.02, 2000, 0, 1000, 1000),
-    UTILITARIO(0.01, 0.03, 120, 120, 0, 500),
+    UTILITARIO(0.01, 0.03, 120, 120, 0, 500);
 
     private double ipva;
     private double seguroTaxa;

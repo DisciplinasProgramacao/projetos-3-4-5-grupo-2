@@ -4,34 +4,19 @@ public class Caminhao extends Veiculo{
     //#region - Construtores
     /**
      * Construtor caminhão
-     * @param linha Linha de dados proveniente do arquivo.
+     * @param dadosCaminhao Linha de dados proveniente do arquivo.
      */
-    public Caminhao(String linha) {
-        super(linha);
+    public Caminhao(String dadosCaminhao) {
+        super(dadosCaminhao);
     }
     //#endregion
 
     //#region - Métodos
 
     /**
-     * Método para calcular o IPVA do caminhão chamando o método da classe veículo
-     */
-    public double calcularIPVA(){
-        return super.calcularIPVA(TCustosFixos.CAMINHAO.getIpva());
-    };
-
-    //#region - Métodos
-    
-    /**
-     * Método para calcular o seguro do caminhão chamando o método da classe veículo
-     */
-    public double calcularSeguro() {
-        return super.calcularSeguro(TCustosFixos.CAMINHAO.getSeguroTaxa(), TCustosFixos.CAMINHAO.getSeguroFixo());
-    };
-
-    /**
      * Método para calcular os outros custos do caminhão chamando o método da classe veículo
      */
+    @Override
     protected double calcularOutrosCustos() {
         return calcularManutencao() + calcularVistoria();
     }
@@ -43,7 +28,7 @@ public class Caminhao extends Veiculo{
         return (kmRodados/20000.0) * TCustosFixos.CAMINHAO.getManutencao();
     };
 
-       /**
+    /**
      * Método para calcular custos de vistoria do caminhão
      */
     private double calcularVistoria() {
