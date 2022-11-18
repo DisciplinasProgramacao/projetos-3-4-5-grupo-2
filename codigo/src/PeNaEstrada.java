@@ -116,8 +116,22 @@ public class PeNaEstrada {
      * @param dadosVeiculo Linha de dados do arquivo
      */
     public static void adicionaVeiculo(String dadosVeiculo) {
-        Veiculo newVeiculo = new Veiculo(dadosVeiculo);
-        listaVeiculos.add(newVeiculo);
+            Veiculo newVeiculo = null;
+    
+            if(dadosVeiculo.contains("Carro")){
+                newVeiculo = new Carro(dadosVeiculo);
+            }
+            else if (dadosVeiculo.contains("Caminhao")){
+               newVeiculo = new Caminhao(dadosVeiculo);
+            } 
+            else if (dadosVeiculo.contains("Van")){
+                newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.VAN);
+            }
+            else
+                newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.FURGAO);
+    
+            listaVeiculos.add(newVeiculo);
+
     }
 
     /**
@@ -184,8 +198,13 @@ public class PeNaEstrada {
     }
 
     public void abastecerVeiculo(Veiculo v, TCombustivel tpCombustivel){
-        if (v. 
-        v.tanque.completarTanque();
+        if (validaCombustivelVeiculo(v, tpCombustivel))
+           v.tanque.completarTanque();      
+    }
+
+    private boolean validaCombustivelVeiculo(Veiculo v, TCombustivel tpCombustivel) {
+        if (!v.retornaCombustivelVeiculo().contains(tpCombustivel))
+           new Exception(null)
         
     }
 

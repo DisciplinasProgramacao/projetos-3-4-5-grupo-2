@@ -11,6 +11,7 @@ public abstract class Veiculo implements Comparable<Veiculo> {
     protected Tanque tanque;
     protected LinkedList<Rota> rotas = new LinkedList<Rota>();
     protected LinkedList<CustoVariavel> custosVariaveis = new LinkedList<CustoVariavel>();
+    private String tpVeiculo;
     // #endregion
 
     // #region - Construtores
@@ -20,6 +21,7 @@ public abstract class Veiculo implements Comparable<Veiculo> {
      */
     public Veiculo(String dados) {
         String[] vetDados = dados.split(";");
+        this.tpVeiculo = vetDados[0];
         this.placa = vetDados[1];
         this.valorDeVenda = Double.parseDouble(vetDados[2]);
         this.kmRodados = Double.parseDouble(vetDados[3]);
@@ -97,6 +99,29 @@ public abstract class Veiculo implements Comparable<Veiculo> {
                 .mapToDouble(c-> c.retornaCustoVariavel())
                 .sum();
     }
+
+    public LinkedList<TCombustivel> retornaCombustivelVeiculo(){
+        LinkedList<TCombustivel> combustiveis = new LinkedList<TCombustivel>();
+
+        if (this.tpVeiculo.contains("Carro")){
+           combustiveis.add(TCombustivel.GASOLINA); 
+           combustiveis.add(TCombustivel.ETANOL);
+        }      
+        else if (this.tpVeiculo.contains("Caminhão")){
+            combustiveis.add(TCombustivel.DIESEL);
+        }
+        else if (this.tpVeiculo.contains("Van")){
+            combustiveis.add(TCombustivel.GASOLINA); 
+            combustiveis.add(TCombustivel.DIESEL);
+
+        }
+        else{
+            combustiveis.add(TCombustivel.GASOLINA);
+        }
+        
+        return combustiveis;
+    }
+
     // #endregion
 
     // #region Override
@@ -122,6 +147,14 @@ public abstract class Veiculo implements Comparable<Veiculo> {
 
     public String getPlaca() {
         return placa;
+    }
+
+    public String getTpVeiculo() {
+        return tpVeiculo;
+    }
+
+    public void setTpVeiculo(String tpVeiculo) {
+        this.tpVeiculo = tpVeiculo;
     }
     // #endregion
 
