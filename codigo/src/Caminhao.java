@@ -1,13 +1,15 @@
 import javax.print.attribute.standard.RequestingUserName;
 public class Caminhao extends Veiculo{
 
+    private static final double CAPACIDADETANQUE = 250;
+
     //#region - Construtores
     /**
      * Construtor caminhão
      * @param dadosCaminhao Linha de dados proveniente do arquivo.
      */
     public Caminhao(String dadosCaminhao) {
-        super(dadosCaminhao);
+        super(dadosCaminhao, CAPACIDADETANQUE, TCombustivel.DIESEL);
     }
     //#endregion
 

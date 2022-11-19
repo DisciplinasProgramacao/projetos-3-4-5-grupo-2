@@ -1,11 +1,13 @@
 public class Carro extends Veiculo{
 
+    private static final double CAPACIDADE_TANQUE = 50;
+
     //#region - Construtores
     /**
      * Método construtor do carro o método construtor da classe veículo
      */
     public Carro(String dadosCarro) {
-        super(dadosCarro);
+        super(dadosCarro, CAPACIDADE_TANQUE, TCombustivel.GASOLINA);
     }
     //#endregion
     

@@ -54,6 +54,7 @@ public class App {
     }
 
     private static void menuAbastecimento() {
+        TCombustivel tpCombustivel = null;
         String placaVeiculo = digitarPlaca();
         System.out.println("Informe o combustível para abastecimento");
         System.out.println("1 - Gasolina");
@@ -69,20 +70,21 @@ public class App {
 
         } catch (InputMismatchException ie) {
             opcao = 0;
-        }        
+        }
 
         switch (opcao) {
             case 1:
-                PeNaEstrada.
+                tpCombustivel = TCombustivel.GASOLINA;
                 break;
             case 2:
-                addVeiculo();
+                tpCombustivel = TCombustivel.ETANOL;
                 break;
             case 3:
-                PeNaEstrada.topTresRotas();
+                tpCombustivel = TCombustivel.DIESEL;
                 break;
-        }      
-        pausa(); 
+        }
+        PeNaEstrada.abastecerVeiculo(PeNaEstrada.localizarVeiculo(placaVeiculo), tpCombustivel);
+        pausa();
     }
 
     // #region - Menus
@@ -299,14 +301,14 @@ public class App {
 
         double valor = teclado.nextDouble();
 
-        PeNaEstrada.addCusto(PeNaEstrada.localizarVeiculo(placaVeiculo),descricao, valor);
+        PeNaEstrada.addCusto(PeNaEstrada.localizarVeiculo(placaVeiculo), descricao, valor);
     }
 
-    private static Date capturarData(String mensagem) throws ParseException{
+    private static Date capturarData(String mensagem) throws ParseException {
         System.out.println(mensagem);
         String data = teclado.nextLine();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        return  formatter.parse(data);   
+        return formatter.parse(data);
     }
     // #endregion
 

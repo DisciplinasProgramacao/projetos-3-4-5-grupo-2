@@ -19,13 +19,14 @@ public abstract class Veiculo implements Comparable<Veiculo> {
      * Construtor veículos
      * @param dados String de dados proveniente do arquivo Veiculos.txt
      */
-    public Veiculo(String dados) {
+    public Veiculo(String dados, double capacidadeTanque, TCombustivel combustivelInicial) {
         String[] vetDados = dados.split(";");
         this.tpVeiculo = vetDados[0];
         this.placa = vetDados[1];
         this.valorDeVenda = Double.parseDouble(vetDados[2]);
         this.kmRodados = Double.parseDouble(vetDados[3]);
         this.custosGerados = 0;
+        this.tanque = new Tanque(capacidadeTanque, capacidadeTanque, combustivelInicial);
     }
     // #endregion
 
@@ -121,7 +122,6 @@ public abstract class Veiculo implements Comparable<Veiculo> {
         
         return combustiveis;
     }
-
     // #endregion
 
     // #region Override

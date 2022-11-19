@@ -116,70 +116,68 @@ public class PeNaEstrada {
      * @param dadosVeiculo Linha de dados do arquivo
      */
     public static void adicionaVeiculo(String dadosVeiculo) {
-            Veiculo newVeiculo = null;
-    
-            if(dadosVeiculo.contains("Carro")){
-                newVeiculo = new Carro(dadosVeiculo);
-            }
-            else if (dadosVeiculo.contains("Caminhao")){
-               newVeiculo = new Caminhao(dadosVeiculo);
-            } 
-            else if (dadosVeiculo.contains("Van")){
-                newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.VAN);
-            }
-            else
-                newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.FURGAO);
-    
-            listaVeiculos.add(newVeiculo);
+        Veiculo newVeiculo = null;
+
+        if (dadosVeiculo.contains("Carro")) {
+            newVeiculo = new Carro(dadosVeiculo);
+        } else if (dadosVeiculo.contains("Caminhao")) {
+            newVeiculo = new Caminhao(dadosVeiculo);
+        } else if (dadosVeiculo.contains("Van")) {
+            newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.VAN);
+        } else
+            newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.FURGAO);
+
+        listaVeiculos.add(newVeiculo);
 
     }
 
     /**
      * Método para adicionar a rota ao veículo
-     * @param data A data do tipo data
+     * 
+     * @param data    A data do tipo data
      * @param veiculo O veículo que terá a rota incluída
-     * @param kmRota A distância total da rota em KM
+     * @param kmRota  A distância total da rota em KM
      */
     public static void addRota(Date data, Veiculo veiculo, double kmRota) {
-        if(data !=null && veiculo != null && kmRota > 0.0){
+        if (data != null && veiculo != null && kmRota > 0.0) {
             veiculo.incluirRota(data, kmRota);
-        }else{
+        } else {
             System.out.println("Não foi possível adicionar a rota");
         }
     }
 
-    public static void addCusto(Veiculo veiculo,String descricao, double valor) {
-        veiculo.incluirCusto(descricao,valor);
+    public static void addCusto(Veiculo veiculo, String descricao, double valor) {
+        veiculo.incluirCusto(descricao, valor);
     }
 
     public static void topTresRotas() {
         System.out.println("\n3 veículos com mais rotas realizadas: ");
         listaVeiculos.stream()
-                     .sorted((v1, v2) -> v1.maiorQuantRotas(v2))
-                     .limit(3)
-                     .forEach(p -> System.out.println("\n------------"+
-                                                      "\nPlaca: " + p.getPlaca() + 
-                                                      "\nQuantidade de rotas: " + p.getRotas().size()+ 
-                                                      "\n------------"));
+                .sorted((v1, v2) -> v1.maiorQuantRotas(v2))
+                .limit(3)
+                .forEach(p -> System.out.println("\n------------" +
+                        "\nPlaca: " + p.getPlaca() +
+                        "\nQuantidade de rotas: " + p.getRotas().size() +
+                        "\n------------"));
     }
 
     public static void listaRotasPorData(Date data) {
         listaVeiculos.stream()
-                     .forEach(v-> v.getRotas().stream()
-                                              .filter(r-> r.getDate().equals(data))
-                                              .forEach(r->System.out.println("\n------------"+
-                                                                             "\nVeiculo: " + v.getPlaca() + 
-                                                                             "\nKM da rota: " + r.getKmRota() + 
-                                                                             "\nData: " + r.getDate()+ 
-                                                                             "\n------------")));
+                .forEach(v -> v.getRotas().stream()
+                        .filter(r -> r.getDate().equals(data))
+                        .forEach(r -> System.out.println("\n------------" +
+                                "\nVeiculo: " + v.getPlaca() +
+                                "\nKM da rota: " + r.getKmRota() +
+                                "\nData: " + r.getDate() +
+                                "\n------------")));
     }
-    
+
     public static void totalKmAvgRotas() {
         System.out.println("\nMédia da quilometragem de todas as rotas da empresa: ");
         double mediaRotas = listaVeiculos.stream()
-                     .mapToDouble(Veiculo::totalRotas)
-                     .average()
-                     .getAsDouble();
+                .mapToDouble(Veiculo::totalRotas)
+                .average()
+                .getAsDouble();
 
         System.out.println("\nMédia de rotas realizadas pela empresa em km " + mediaRotas);
     }
@@ -197,15 +195,27 @@ public class PeNaEstrada {
         // .forEach(p -> System.out.println(p.placa));
     }
 
-    public void abastecerVeiculo(Veiculo v, TCombustivel tpCombustivel){
-        if (validaCombustivelVeiculo(v, tpCombustivel))
-           v.tanque.completarTanque();      
+    public static void abastecerVeiculo(Veiculo v, TCombustivel tpCombustivel) {
+        try {
+            if (validaCombustivelVeiculo(v, tpCombustivel)) {
+                v.tanque.completarTanque();
+                System.out.println("Tanque completo.");
+            }
+        } catch (CombustivelException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    private boolean validaCombustivelVeiculo(Veiculo v, TCombustivel tpCombustivel) {
-        if (!v.retornaCombustivelVeiculo().contains(tpCombustivel))
-           new Exception(null)
-        
+    private static boolean validaCombustivelVeiculo(Veiculo v, TCombustivel tpCombustivel) throws Exception {
+        boolean valido = false;
+        if (v.retornaCombustivelVeiculo().indexOf(tpCombustivel) == -1)
+            throw new CombustivelException("Combustível inválido para o tipo de veículo.");
+        else
+            valido = true;
+
+        return valido;
     }
 
 }
