@@ -182,7 +182,7 @@ public class PeNaEstrada {
         System.out.println("\nMédia de rotas realizadas pela empresa em km " + mediaRotas);
     }
 
-    public void listarVeiculosPorCusto() {
+    public static void listarVeiculosPorCusto() {
         System.out.println("Lista de veículos com custos gerados em ordem decrescente: ");
 
         Collections.reverse(listaVeiculos

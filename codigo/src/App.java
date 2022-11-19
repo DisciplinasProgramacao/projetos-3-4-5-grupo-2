@@ -8,7 +8,7 @@ public class App {
 
     // #region variáveis auxiliares
     private static Scanner teclado = new Scanner(System.in, "UTF-8");
-    private static String caminho = "C:/Users/danie/OneDrive/Área de Trabalho/PUC/PM/LAB/projetos-3-4-5-grupo-2";
+    private static String caminho = "C:\\Users\\bruno\\OneDrive\\Documentos\\folder\\projetos-3-4-5-grupo-2";
     // #endregion
 
     public static void main(String[] args) throws Exception {
@@ -45,6 +45,9 @@ public class App {
                     break;
                 case 8:
                     menuAbastecimento();
+                    break;
+                case 9:
+                    PeNaEstrada.listarVeiculosPorCusto();
                     break;
             }
             pausa();
@@ -106,8 +109,9 @@ public class App {
         System.out.println("4 - Adicionar nova rota");
         System.out.println("5 - Buscar rotas por data");
         System.out.println("6 - Média da quilometragem de todas as rotas");
-        System.out.println("7 - Adicionar novo custo");
+        System.out.println("7 - Adicionar manutenção não programada ");
         System.out.println("8 - Abastecer veículo");
+        System.out.println("9 - Lista de veículos ordenada decrescentemente por custos gerados");
         System.out.println("0 - Sair");
         System.out.print("Digite sua opção: ");
         try {
@@ -283,6 +287,7 @@ public class App {
         PeNaEstrada.listaRotasPorData(data);
     }
 
+
     private static void addRota() throws ParseException {
         String placaVeiculo = digitarPlaca();
         Date date = capturarData("Em qual data a rota será executada? (Digite no formato dd/MM/AAAA)");
@@ -294,13 +299,9 @@ public class App {
     private static void addCusto() {
         String placaVeiculo = digitarPlaca();
         System.out.println("Digite a descrição do custo");
-
         String descricao = teclado.nextLine();
-
         System.out.println("Digite o valor do custo");
-
         double valor = teclado.nextDouble();
-
         PeNaEstrada.addCusto(PeNaEstrada.localizarVeiculo(placaVeiculo), descricao, valor);
     }
 
