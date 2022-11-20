@@ -8,7 +8,7 @@ public class App {
 
     // #region variáveis auxiliares
     private static Scanner teclado = new Scanner(System.in, "UTF-8");
-    private static String caminho = "C:\\Codes\\PM\\LPM\\projetos-3-4-5-grupo-2";
+    private static String caminho = "C:/Users/danie/OneDrive/Área de Trabalho/PUC/PM/LAB/projetos-3-4-5-grupo-2";
     // #endregion
 
     public static void main(String[] args) throws Exception {
@@ -221,25 +221,6 @@ public class App {
     }
 
     private static void custosTotais(String placa) {
-
-        // TCustosFixos tipoVeiculo = null;
-
-        // limparTela();
-        // switch (PeNaEstrada.localizarVeiculo(placa).getTpVeiculo()) {
-        //     case "Carro":
-        //         tipoVeiculo = TCustosFixos.CARRO;
-        //         break;
-        //     case "Utilitario":
-        //         tipoVeiculo = TCustosFixos.UTILITARIO;
-        //         break;
-        //     case "Caminhao":
-        //         tipoVeiculo = TCustosFixos.CAMINHAO;
-        //         break;
-        // }
-
-        // System.out.println("Custos totais do veículo:");
-        // System.out.println("R$" + PeNaEstrada.localizarVeiculo(placa).retornaCustosTotais(tipoVeiculo));
-
         PeNaEstrada.localizarVeiculo(placa).tipoDeCusto();
 
         System.out.println("Custos totais do veículo:");

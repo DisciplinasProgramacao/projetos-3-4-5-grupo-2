@@ -42,7 +42,10 @@ public abstract class Veiculo implements Comparable<Veiculo> {
             case "Carro":
                 tipoVeiculo = TCustosFixos.CARRO;
                 break;
-            case "Utilitario":
+            case "Van":
+                tipoVeiculo = TCustosFixos.UTILITARIO;
+                break;
+            case "Furgao":
                 tipoVeiculo = TCustosFixos.UTILITARIO;
                 break;
             case "Caminhao":
