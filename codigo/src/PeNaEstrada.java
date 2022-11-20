@@ -185,16 +185,14 @@ public class PeNaEstrada {
 
     public static void listarVeiculosPorCusto() {
 
-
-
         System.out.println("Lista de veículos com custos gerados em ordem decrescente: ");
 
         listaVeiculos.stream()
-                    .sorted(Comparator.comparingDouble(Veiculo::custosGerados).reversed())   ////X1 should be class name
-                    .filter(v -> v.custosGerados() <= 1)
+                    .sorted(Comparator.comparingDouble(Veiculo::getCustosGerados).reversed())   ////X1 should be class name
+                    .filter(v -> v.getCustosGerados() >= 1)
                     .forEach(v -> System.out.println("\n------------" +
                     "\nVeiculo: " + v.getPlaca() +
-                    "\nCusto Gerado: " + v.custosGerados() +
+                    "\nCusto Gerado: " + v.getCustosGerados() +
                     "\n------------"));
     }
 

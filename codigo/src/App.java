@@ -243,7 +243,7 @@ public class App {
         PeNaEstrada.localizarVeiculo(placa).tipoDeCusto();
 
         System.out.println("Custos totais do veículo:");
-        System.out.println("R$" + PeNaEstrada.localizarVeiculo(placa).custosGerados());
+        System.out.println("R$" + PeNaEstrada.localizarVeiculo(placa).getCustosGerados());
     }
 
     private static void buscarVeiculo(String placa) {

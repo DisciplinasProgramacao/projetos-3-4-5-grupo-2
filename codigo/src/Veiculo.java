@@ -26,6 +26,7 @@ public abstract class Veiculo implements Comparable<Veiculo> {
         this.valorDeVenda = Double.parseDouble(vetDados[2]);
         this.kmRodados = Double.parseDouble(vetDados[3]);
         this.tanque = new Tanque(capacidadeTanque, capacidadeTanque, combustivelInicial);
+        tipoDeCusto();
     }
     // #endregion
 
@@ -164,8 +165,8 @@ public abstract class Veiculo implements Comparable<Veiculo> {
     // #endregion
 
     // #region getters and setters
-    public double custosGerados() {
-        return custosGerados;
+    public double getCustosGerados() {
+        return this.custosGerados;
     }
 
     public LinkedList<Rota> getRotas() {
