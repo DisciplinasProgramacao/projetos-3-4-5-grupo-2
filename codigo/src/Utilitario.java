@@ -28,9 +28,4 @@ public class Utilitario extends Veiculo{
     private double calcularVistoria() {
         return (kmRodados/10000.0) * TCustosFixos.UTILITARIO.getVistoria();
     };
-
-    @Override
-    public String toString() {
-        return String.format("%s;", Utilitario.class.getSimpleName())+super.toString();
-    }
 }

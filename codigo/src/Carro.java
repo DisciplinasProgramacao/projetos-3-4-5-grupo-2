@@ -26,10 +26,5 @@ public class Carro extends Veiculo{
     private double calcularAlinhamento() {
         return (kmRodados/10000.0) * TCustosFixos.CARRO.getAlinhamento();
     }    
-
-    @Override
-    public String toString() {
-        return String.format("%s;", Carro.class.getSimpleName())+super.toString();
-    }
     //#endregion
 }

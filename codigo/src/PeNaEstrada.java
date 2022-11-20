@@ -141,13 +141,15 @@ public class PeNaEstrada {
     public static void addRota(Date data, Veiculo veiculo, double kmRota) {
         if (data != null && veiculo != null && kmRota > 0.0) {
             veiculo.incluirRota(data, kmRota);
+            System.out.println(String.format("\nRota incluida com sucesso. \nData: %td \nQuilometros da rota: %.2f", data, kmRota));
         } else {
-            System.out.println("Não foi possível adicionar a rota");
+            System.out.println("\nNão foi possível adicionar a rota");
         }
     }
 
     public static void addCusto(Veiculo veiculo, String descricao, double valor) {
         veiculo.incluirCusto(descricao, valor);
+        System.out.println(String.format("\nNovo custo adicionado no veículo. \nDescrição: %s \nValor: %.2f", descricao, valor));
     }
 
     public static void topTresRotas() {
@@ -173,7 +175,6 @@ public class PeNaEstrada {
     }
 
     public static void totalKmAvgRotas() {
-        System.out.println("\nMédia da quilometragem de todas as rotas da empresa: ");
         double mediaRotas = listaVeiculos.stream()
                 .mapToDouble(Veiculo::totalRotas)
                 .average()
@@ -183,23 +184,30 @@ public class PeNaEstrada {
     }
 
     public static void listarVeiculosPorCusto() {
+
+
+
         System.out.println("Lista de veículos com custos gerados em ordem decrescente: ");
 
-        Collections.reverse(listaVeiculos
-                .stream()
-                .sorted((Comparator.comparingDouble(Veiculo::getCustosGerados)))
-                .collect(Collectors.toList()));
-
-        // listaVeiculos.stream().sorted((o1, o2) -> o1.getCustosGerados()
-        // .compareTo(o2.getCustosGerados()))
-        // .forEach(p -> System.out.println(p.placa));
+        listaVeiculos.stream()
+                    .sorted(Comparator.comparingDouble(Veiculo::custosGerados).reversed())   ////X1 should be class name
+                    .filter(v -> v.custosGerados() <= 1)
+                    .forEach(v -> System.out.println("\n------------" +
+                    "\nVeiculo: " + v.getPlaca() +
+                    "\nCusto Gerado: " + v.custosGerados() +
+                    "\n------------"));
     }
 
     public static void abastecerVeiculo(Veiculo v, TCombustivel tpCombustivel) {
         try {
             if (validaCombustivelVeiculo(v, tpCombustivel)) {
                 v.tanque.completarTanque();
-                System.out.println("Tanque completo.");
+                System.out.println("\nTanque completo"+
+                "\nTipo de combustivel:"+ v.tanque.getTCombustivel()+
+                "\nQuantidade adicionada:"+ v.tanque.combustivelAdd()+
+                "\nValor do abastecimento:"+ v.tanque.valorAbastecimento()+
+                "\nQuilometros totais percorríveis com o tanque cheio: "+ v.tanque.kmPercorridosCombustivelTotal()
+                );
             }
         } catch (CombustivelException e) {
             System.out.println(e.getMessage());

@@ -8,7 +8,7 @@ public class App {
 
     // #region variáveis auxiliares
     private static Scanner teclado = new Scanner(System.in, "UTF-8");
-    private static String caminho = "C:\\Users\\bruno\\OneDrive\\Documentos\\folder\\projetos-3-4-5-grupo-2";
+    private static String caminho = "C:\\Codes\\PM\\LPM\\projetos-3-4-5-grupo-2";
     // #endregion
 
     public static void main(String[] args) throws Exception {
@@ -32,21 +32,12 @@ public class App {
                     PeNaEstrada.topTresRotas();
                     break;
                 case 4:
-                    addRota();
-                    break;
-                case 5:
                     buscarRotasPorData();
                     break;
-                case 6:
+                case 5:
                     PeNaEstrada.totalKmAvgRotas();
                     break;
-                case 7:
-                    addCusto();
-                    break;
-                case 8:
-                    menuAbastecimento();
-                    break;
-                case 9:
+                case 6:
                     PeNaEstrada.listarVeiculosPorCusto();
                     break;
             }
@@ -56,15 +47,15 @@ public class App {
 
     }
 
-    private static void menuAbastecimento() {
+    private static void menuAbastecimento(String placaVeiculo) {
         TCombustivel tpCombustivel = null;
-        String placaVeiculo = digitarPlaca();
-        System.out.println("Informe o combustível para abastecimento");
+        
+        System.out.println("\nInforme o combustível para abastecimento");
         System.out.println("1 - Gasolina");
         System.out.println("2 - Etanol");
         System.out.println("3 - Disel");
         System.out.println("0 - Sair");
-        System.out.print("Digite sua opção: ");
+        System.out.print("\nDigite sua opção: ");
         int opcao;
 
         try {
@@ -87,7 +78,6 @@ public class App {
                 break;
         }
         PeNaEstrada.abastecerVeiculo(PeNaEstrada.localizarVeiculo(placaVeiculo), tpCombustivel);
-        pausa();
     }
 
     // #region - Menus
@@ -100,20 +90,17 @@ public class App {
         System.out.println();
         System.out.println();
         // Pensar num outro nome depois
-        System.out.println(" PéNaEstrada - O seu administrador de veículos");
+        System.out.println("\n PéNaEstrada - O seu administrador de veículos");
         System.out.println("========================================");
         System.out.println("Seja bem vindo ao app! O que você gostaria de fazer?");
         System.out.println("1 - Informações de um veículo");
         System.out.println("2 - Adicionar novo veículo");
         System.out.println("3 - Top três - Veículos com mais rotas realizadas");
-        System.out.println("4 - Adicionar nova rota");
-        System.out.println("5 - Buscar rotas por data");
-        System.out.println("6 - Média da quilometragem de todas as rotas");
-        System.out.println("7 - Adicionar manutenção não programada ");
-        System.out.println("8 - Abastecer veículo");
-        System.out.println("9 - Lista de veículos ordenada decrescentemente por custos gerados");
+        System.out.println("4 - Buscar rotas por data");
+        System.out.println("5 - Média da quilometragem de todas as rotas");
+        System.out.println("6 - Lista de veículos ordenada decrescentemente por custos gerados");
         System.out.println("0 - Sair");
-        System.out.print("Digite sua opção: ");
+        System.out.print("\nDigite sua opção: ");
         try {
             int opcao = teclado.nextInt();
             teclado.nextLine();
@@ -129,20 +116,16 @@ public class App {
      * @return Opção do usuário (int)
      */
     public static int menuVeiculos() {
-        limparTela();
-        System.out.println();
-        System.out.println();
-
-        System.out.println(" PéNaEstrada - O seu administrador de veículos");
+        System.out.println("\n PéNaEstrada - O seu administrador de veículos");
         System.out.println("========================================");
         System.out.println("Bem vindo a tela de veículos, o que gostaria de fazer?");
         System.out.println("1 - Visualizar informações básicas");
-        System.out.println("2 - Calcular IPVA");
-        System.out.println("3 - Calcular seguro do veículo");
-        System.out.println("4 - Calcular outros custos");
+        System.out.println("2 - Adicionar nova rota");
+        System.out.println("3 - Adicionar manutenção não programada");
+        System.out.println("4 - Abastecer veículo");
         System.out.println("5 - Calcular gastos totais");
         System.out.println("0 - Sair");
-        System.out.print("Digite sua opção: ");
+        System.out.print("\nDigite sua opção: ");
         try {
             int opcao = teclado.nextInt();
             teclado.nextLine();
@@ -162,14 +145,14 @@ public class App {
         System.out.println();
         System.out.println();
 
-        System.out.println(" PéNaEstrada - O seu administrador de veículos");
+        System.out.println("\n PéNaEstrada - O seu administrador de veículos");
         System.out.println("========================================");
         System.out.println("Selecione o tipo de veículo que deseja adicionar");
         System.out.println("1 - Carro");
         System.out.println("2 - Utilitário");
         System.out.println("3 - Caminhão");
         System.out.println("0 - Sair");
-        System.out.print("Digite sua opção: ");
+        System.out.print("\nDigite sua opção: ");
         try {
             int opcao = teclado.nextInt();
             teclado.nextLine();
@@ -197,59 +180,11 @@ public class App {
         teclado.nextLine();
     }
 
-    /**
-     * Permite o usuario digitar o nome de um autor
-     * 
-     * @return - nome do autor
-     */
-    public static String digitarAutor() {
-        limparTela();
+    public static String digitarDados() {
         System.out.println();
-        System.out.println();
-
-        System.out.println(" PéNaEstrada - O seu administrador de veículos");
-        System.out.println("========================================");
-        System.out.println("Digite o nome da placa do veículo");
         try {
-            String nome = teclado.nextLine();
-            return nome;
-        } catch (InputMismatchException ie) {
-            return null;
-        }
-    }
-
-    /**
-     * Permite o usuario digitar a placa de um veículo
-     * 
-     * @return - placa do veículo
-     */
-    public static String digitarPlaca() {
-        limparTela();
-        System.out.println();
-        System.out.println();
-
-        System.out.println(" PéNaEstrada - O seu administrador de veículos");
-        System.out.println("========================================");
-        System.out.println("Escolha a placa do veículo que deseja buscar");
-        try {
-            String placa = teclado.nextLine();
-            return placa;
-        } catch (InputMismatchException ie) {
-            return null;
-        }
-    }
-
-    public static String digitarValor() {
-        limparTela();
-        System.out.println();
-        System.out.println();
-
-        System.out.println(" PéNaEstrada - O seu administrador de veículos");
-        System.out.println("========================================");
-        System.out.println("Digite o valor desejado");
-        try {
-            String placa = teclado.nextLine();
-            return placa;
+            String valor = teclado.nextLine();
+            return valor;
         } catch (InputMismatchException ie) {
             return null;
         }
@@ -257,29 +192,77 @@ public class App {
     // #endregion
 
     // #region métodos menu
-    private static void informacoesVeiculo() {
+    // SEGUNDO MENU
+    private static void informacoesVeiculo() throws ParseException {
+        limparTela();
+        System.out.println(" PéNaEstrada - O seu administrador de veículos");
+        System.out.println("========================================");
+        System.out.println("Digite a placa do veículo:");
+        String placaVeiculo = digitarDados();
         int opcaoVeiculo = menuVeiculos();
+
         switch (opcaoVeiculo) {
             case 1:
-                buscarVeiculo();
+                buscarVeiculo(placaVeiculo);
+            break;
+            case 2:
+                addRota(placaVeiculo);
+            break;
+            case 3:
+                addCusto(placaVeiculo);
+                break;
+            case 4:
+                menuAbastecimento(placaVeiculo);
+            break;
+            case 5:
+                custosTotais(placaVeiculo); 
+            break;
         }
     }
 
-    private static void buscarVeiculo() {
-        String placaVeiculoCase1 = digitarPlaca();
-        System.out.println(PeNaEstrada.localizarVeiculo(placaVeiculoCase1).dadosVeiculo());
+    private static void custosTotais(String placa) {
+
+        // TCustosFixos tipoVeiculo = null;
+
+        // limparTela();
+        // switch (PeNaEstrada.localizarVeiculo(placa).getTpVeiculo()) {
+        //     case "Carro":
+        //         tipoVeiculo = TCustosFixos.CARRO;
+        //         break;
+        //     case "Utilitario":
+        //         tipoVeiculo = TCustosFixos.UTILITARIO;
+        //         break;
+        //     case "Caminhao":
+        //         tipoVeiculo = TCustosFixos.CAMINHAO;
+        //         break;
+        // }
+
+        // System.out.println("Custos totais do veículo:");
+        // System.out.println("R$" + PeNaEstrada.localizarVeiculo(placa).retornaCustosTotais(tipoVeiculo));
+
+        PeNaEstrada.localizarVeiculo(placa).tipoDeCusto();
+
+        System.out.println("Custos totais do veículo:");
+        System.out.println("R$" + PeNaEstrada.localizarVeiculo(placa).custosGerados());
+    }
+
+    private static void buscarVeiculo(String placa) {
+        System.out.println(PeNaEstrada.localizarVeiculo(placa).dadosVeiculo());
     }
 
     private static void addVeiculo() {
         int veiculoEscolhido = menuSelecaoVeiculo();
-        String placaVeiculo = digitarPlaca();
+        System.out.println(" PéNaEstrada - O seu administrador de veículos");
+        System.out.println("========================================");
+        System.out.println("Digite a placa do veículo:");
+        String placaVeiculo = digitarDados();
         System.out.println("\nAgora escolha o valor de venda do veículo:\n");
-        String valorDeVenda = digitarValor();
-        System.out.println("\nAgora escolha o valor da quantidade de km rodados:\n");
-        String valorKmRodados = digitarValor();
+        String valorDeVenda = digitarDados();
+        System.out.println("\nInsira a quantidade de km rodados do veículo:\n");
+        String valorKmRodados = digitarDados();
         String dadosNovoVeiculo = PeNaEstrada.gerarString(veiculoEscolhido, placaVeiculo, valorDeVenda, valorKmRodados);
         PeNaEstrada.adicionaVeiculo(dadosNovoVeiculo);
-        System.out.println("Veiculo criado com sucesso");
+        System.out.println("Veiculo criado com sucesso:"+ PeNaEstrada.localizarVeiculo(placaVeiculo).dadosVeiculo());
     }
 
     private static void buscarRotasPorData() throws ParseException {
@@ -288,19 +271,17 @@ public class App {
     }
 
 
-    private static void addRota() throws ParseException {
-        String placaVeiculo = digitarPlaca();
-        Date date = capturarData("Em qual data a rota será executada? (Digite no formato dd/MM/AAAA)");
-        System.out.println("Quantos quilômetros de rota?");
+    private static void addRota(String placaVeiculo) throws ParseException {
+        Date date = capturarData("\nEm qual data a rota será executada? (Digite no formato dd/MM/AAAA)");
+        System.out.println("\nQuantos quilômetros de rota?");
         double km = teclado.nextDouble();
         PeNaEstrada.addRota(date, PeNaEstrada.localizarVeiculo(placaVeiculo), km);
     }
 
-    private static void addCusto() {
-        String placaVeiculo = digitarPlaca();
-        System.out.println("Digite a descrição do custo");
+    private static void addCusto(String placaVeiculo) {
+        System.out.println("\nDigite a descrição do custo");
         String descricao = teclado.nextLine();
-        System.out.println("Digite o valor do custo");
+        System.out.println("\nDigite o valor do custo");
         double valor = teclado.nextDouble();
         PeNaEstrada.addCusto(PeNaEstrada.localizarVeiculo(placaVeiculo), descricao, valor);
     }

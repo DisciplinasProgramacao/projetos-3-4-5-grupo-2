@@ -37,10 +37,6 @@ public class Caminhao extends Veiculo{
         return (kmRodados/30000.0) * TCustosFixos.CAMINHAO.getVistoria();
     };
 
-    @Override
-    public String toString() {
-        return String.format("%s;", Caminhao.class.getSimpleName())+super.toString();
-    }
     //#endregion
 
 }

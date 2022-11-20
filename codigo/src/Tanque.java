@@ -1,3 +1,5 @@
+import org.junit.validator.PublicClassValidator;
+
 public class Tanque {
     
     private double capacidadeMax;
@@ -20,8 +22,16 @@ public class Tanque {
 
     public void completarTanque() {
         this.combustivelAtual = this.capacidadeMax;
-        
     }
+
+    public double combustivelAdd() {
+        return this.capacidadeMax - this.combustivelAtual;
+    }
+
+    public double valorAbastecimento() {
+        return combustivelAdd() * this.tCombustivel.getPreco();
+    }
+
 
     public void reduzirConsumoDaRota(double kmRota) {
         this.combustivelAtual -= kmRota/tCombustivel.getConsumoMedio();
@@ -37,7 +47,11 @@ public class Tanque {
         return this.combustivelAtual;
     }
 
-    public TCombustivel gettCombustivel() {
+    public double getCapMaxima(){
+        return this.capacidadeMax;
+    }
+
+    public TCombustivel getTCombustivel() {
         return tCombustivel;
     }
 

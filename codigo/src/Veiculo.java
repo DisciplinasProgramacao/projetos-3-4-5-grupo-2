@@ -19,13 +19,12 @@ public abstract class Veiculo implements Comparable<Veiculo> {
      * Construtor veículos
      * @param dados String de dados proveniente do arquivo Veiculos.txt
      */
-    public Veiculo(String dados, double capacidadeTanque, TCombustivel combustivelInicial) {
+    Veiculo(String dados, double capacidadeTanque, TCombustivel combustivelInicial) {
         String[] vetDados = dados.split(";");
         this.tpVeiculo = vetDados[0];
         this.placa = vetDados[1];
         this.valorDeVenda = Double.parseDouble(vetDados[2]);
         this.kmRodados = Double.parseDouble(vetDados[3]);
-        this.custosGerados = 0;
         this.tanque = new Tanque(capacidadeTanque, capacidadeTanque, combustivelInicial);
     }
     // #endregion
@@ -34,14 +33,31 @@ public abstract class Veiculo implements Comparable<Veiculo> {
 
     protected abstract double calcularOutrosCustos();
 
-    public double retornaCustosTotais(TCustosFixos custoFixoVeiculo) {     
-        
-        double custoIpva = (double) valorDeVenda * custoFixoVeiculo.getIpva();
-        double custoSeguro = (double) (valorDeVenda * custoFixoVeiculo.getSeguroTaxa()) + custoFixoVeiculo.getSeguroFixo();
+    public void tipoDeCusto() {
+
+        TCustosFixos tipoVeiculo = null;
+
+        switch (this.tpVeiculo) {
+            case "Carro":
+                tipoVeiculo = TCustosFixos.CARRO;
+                break;
+            case "Utilitario":
+                tipoVeiculo = TCustosFixos.UTILITARIO;
+                break;
+            case "Caminhao":
+                tipoVeiculo = TCustosFixos.CAMINHAO;
+                break;
+        }
+
+        retornaCustosTotais(tipoVeiculo);
+    }
+    
+    public void retornaCustosTotais(TCustosFixos tipoVeiculo) {  
+
+        double custoIpva = (double) valorDeVenda * tipoVeiculo.getIpva();
+        double custoSeguro = (double) (valorDeVenda * tipoVeiculo.getSeguroTaxa()) + tipoVeiculo.getSeguroFixo();
 
         this.custosGerados = custoIpva + custoSeguro + calcularOutrosCustos() + somaCustosVariaveis();
-
-        return custosGerados;
     }
 
     /**
@@ -132,12 +148,23 @@ public abstract class Veiculo implements Comparable<Veiculo> {
 
     @Override
     public String toString() {
-        return String.format("%s;%.2f;%d;", this.placa, this.valorDeVenda, this.kmRodados).toString();
+
+         StringBuilder dadosVeiculo = new StringBuilder("\n--> Dados do veículo");
+        dadosVeiculo.append("\n----------------------------------");
+        dadosVeiculo.append(
+            "\nTipo: " + this.tpVeiculo
+            +"\nPlaca: " + this.placa
+            +"\nValor de venda: R$"+this.valorDeVenda
+            +"\nQuilometros rodados: "+this.kmRodados + " Km"
+            +"\nCapacidade do tanque: "+this.tanque.getCapMaxima()+" litros" 
+        );
+
+        return dadosVeiculo.toString();
     }
     // #endregion
 
     // #region getters and setters
-    public double getCustosGerados() {
+    public double custosGerados() {
         return custosGerados;
     }
 
