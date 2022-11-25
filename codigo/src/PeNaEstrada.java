@@ -147,11 +147,20 @@ public class PeNaEstrada {
         }
     }
 
+    /**
+     * Método para adicionar custo a um veículo
+     * @param veiculo o veiculo que terá o custo adicionado
+     * @param descricao descrição do custo
+     * @param valor valor do custo
+     */
     public static void addCusto(Veiculo veiculo, String descricao, double valor) {
         veiculo.incluirCusto(descricao, valor);
         System.out.println(String.format("\nNovo custo adicionado no veículo. \nDescrição: %s \nValor: %.2f", descricao, valor));
     }
 
+    /**
+     * Metodo retorna os três veículos com mais rotas feitas
+     */
     public static void topTresRotas() {
         System.out.println("\n3 veículos com mais rotas realizadas: ");
         listaVeiculos.stream()
@@ -163,6 +172,10 @@ public class PeNaEstrada {
                         "\n------------"));
     }
 
+    /**
+     * Método retorna as rotas pela data 
+     * @param data A data desejada para buscar nas rotas
+     */
     public static void listaRotasPorData(Date data) {
         listaVeiculos.stream()
                 .forEach(v -> v.getRotas().stream()
@@ -174,6 +187,9 @@ public class PeNaEstrada {
                                 "\n------------")));
     }
 
+    /**
+     * Método de média geral de todas as rotas feitas
+     */
     public static void totalKmAvgRotas() {
         double mediaRotas = listaVeiculos.stream()
                 .mapToDouble(Veiculo::totalRotas)
@@ -183,6 +199,9 @@ public class PeNaEstrada {
         System.out.println("\nMédia de rotas realizadas pela empresa em km " + mediaRotas);
     }
 
+    /**
+     * Método para listar os veículos da frota por custo
+     */
     public static void listarVeiculosPorCusto() {
 
         System.out.println("Lista de veículos com custos gerados em ordem decrescente: ");
@@ -196,15 +215,20 @@ public class PeNaEstrada {
                     "\n------------"));
     }
 
-    public static void abastecerVeiculo(Veiculo v, TCombustivel tpCombustivel) {
+    /** 
+     * Método para abaster o veículo
+     * @param veiculo Veiculo deseja para abastecer
+     * @param tpCombustivel Tipo do combustivel para abastecer
+     */
+    public static void abastecerVeiculo(Veiculo veiculo, TCombustivel tpCombustivel) {
         try {
-            if (validaCombustivelVeiculo(v, tpCombustivel)) {
-                v.tanque.completarTanque();
+            if (validaCombustivelVeiculo(veiculo, tpCombustivel)) {
+                veiculo.tanque.completarTanque();
                 System.out.println("\nTanque completo"+
-                "\nTipo de combustivel:"+ v.tanque.getTCombustivel()+
-                "\nQuantidade adicionada:"+ v.tanque.combustivelAdd()+
-                "\nValor do abastecimento:"+ v.tanque.valorAbastecimento()+
-                "\nQuilometros totais percorríveis com o tanque cheio: "+ v.tanque.kmPercorridosCombustivelTotal()
+                "\nTipo de combustivel:"+ veiculo.tanque.getTCombustivel()+
+                "\nQuantidade adicionada:"+ veiculo.tanque.combustivelAdd()+
+                "\nValor do abastecimento:"+ veiculo.tanque.valorAbastecimento()+
+                "\nQuilometros totais percorríveis com o tanque cheio: "+ veiculo.tanque.kmPercorridosCombustivelTotal()
                 );
             }
         } catch (CombustivelException e) {
@@ -214,6 +238,7 @@ public class PeNaEstrada {
         }
     }
 
+    
     private static boolean validaCombustivelVeiculo(Veiculo v, TCombustivel tpCombustivel) throws Exception {
         boolean valido = false;
         if (v.retornaCombustivelVeiculo().indexOf(tpCombustivel) == -1)

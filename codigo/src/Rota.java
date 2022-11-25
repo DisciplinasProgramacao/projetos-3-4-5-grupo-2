@@ -8,6 +8,11 @@ public class Rota {
     //#endregion
 
     //#region - Construtores
+    /**
+     * Metodo construtor da rota
+     * @param data Data da rota
+     * @param kmRota Tamanho da rota em km
+     */
     Rota(Date data, double kmRota) {
         this.data = data;
         this.kmRota = kmRota;
