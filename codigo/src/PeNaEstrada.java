@@ -3,12 +3,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class PeNaEstrada {
 
@@ -72,7 +70,7 @@ public class PeNaEstrada {
             bw.write(veiculo[i].toString());
             bw.newLine();
         }
-
+        
         bw.close();
     }
 
@@ -112,7 +110,6 @@ public class PeNaEstrada {
 
     /**
      * Método para criar os diferentes tipos de veículos
-     * 
      * @param dadosVeiculo Linha de dados do arquivo
      */
     public static void adicionaVeiculo(String dadosVeiculo) {
@@ -128,12 +125,11 @@ public class PeNaEstrada {
             newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.FURGAO);
 
         listaVeiculos.add(newVeiculo);
-
     }
 
     /**
      * Método para adicionar a rota ao veículo
-     * 
+
      * @param data    A data do tipo data
      * @param veiculo O veículo que terá a rota incluída
      * @param kmRota  A distância total da rota em KM

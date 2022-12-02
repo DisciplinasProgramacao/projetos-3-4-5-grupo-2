@@ -196,7 +196,7 @@ public class App {
     private static void informacoesVeiculo() throws ParseException {
         limparTela();
         System.out.println(" PéNaEstrada - O seu administrador de veículos");
-        System.out.println("========================================");
+        System.out.println("===============================================");
         System.out.println("Digite a placa do veículo:");
         String placaVeiculo = digitarDados();
         int opcaoVeiculo = menuVeiculos();
