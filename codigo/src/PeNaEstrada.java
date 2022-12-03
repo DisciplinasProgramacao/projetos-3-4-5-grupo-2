@@ -70,7 +70,7 @@ public class PeNaEstrada {
             bw.write(veiculo[i].toString());
             bw.newLine();
         }
-        
+
         bw.close();
     }
 
@@ -110,26 +110,50 @@ public class PeNaEstrada {
 
     /**
      * Método para criar os diferentes tipos de veículos
+     * 
      * @param dadosVeiculo Linha de dados do arquivo
      */
     public static void adicionaVeiculo(String dadosVeiculo) {
+
         Veiculo newVeiculo = null;
 
         if (dadosVeiculo.contains("Carro")) {
-            newVeiculo = new Carro(dadosVeiculo);
-        } else if (dadosVeiculo.contains("Caminhao")) {
-            newVeiculo = new Caminhao(dadosVeiculo);
-        } else if (dadosVeiculo.contains("Van")) {
-            newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.VAN);
-        } else
-            newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.FURGAO);
 
+            FactoryCarro addCarro = null;
+            newVeiculo = addCarro.create(dadosVeiculo, null);
+
+        } else if (dadosVeiculo.contains("Caminhao")) {
+            FactoryCaminhao addCaminhao = null;
+            newVeiculo = addCaminhao.create(dadosVeiculo, null);
+
+        } else {
+            FactoryUtilitario addUtilitario = null;
+
+            if (dadosVeiculo.contains("Van")) {
+                newVeiculo = addUtilitario.create(dadosVeiculo, TUtilitario.VAN);
+            } else {
+                newVeiculo = addUtilitario.create(dadosVeiculo, TUtilitario.FURGAO);
+            }
+        }
         listaVeiculos.add(newVeiculo);
+
+        // Veiculo newVeiculo = null;
+
+        // if (dadosVeiculo.contains("Carro")) {
+        // newVeiculo = new Carro(dadosVeiculo);
+        // } else if (dadosVeiculo.contains("Caminhao")) {
+        // newVeiculo = new Caminhao(dadosVeiculo);
+        // } else if (dadosVeiculo.contains("Van")) {
+        // newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.VAN);
+        // } else
+        // newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.FURGAO);
+
+        // listaVeiculos.add(newVeiculo);
     }
 
     /**
      * Método para adicionar a rota ao veículo
-
+     * 
      * @param data    A data do tipo data
      * @param veiculo O veículo que terá a rota incluída
      * @param kmRota  A distância total da rota em KM
@@ -137,7 +161,8 @@ public class PeNaEstrada {
     public static void addRota(Date data, Veiculo veiculo, double kmRota) {
         if (data != null && veiculo != null && kmRota > 0.0) {
             veiculo.incluirRota(data, kmRota);
-            System.out.println(String.format("\nRota incluida com sucesso. \nData: %td \nQuilometros da rota: %.2f", data, kmRota));
+            System.out.println(String.format("\nRota incluida com sucesso. \nData: %td \nQuilometros da rota: %.2f",
+                    data, kmRota));
         } else {
             System.out.println("\nNão foi possível adicionar a rota");
         }
@@ -145,13 +170,15 @@ public class PeNaEstrada {
 
     /**
      * Método para adicionar custo a um veículo
-     * @param veiculo o veiculo que terá o custo adicionado
+     * 
+     * @param veiculo   o veiculo que terá o custo adicionado
      * @param descricao descrição do custo
-     * @param valor valor do custo
+     * @param valor     valor do custo
      */
     public static void addCusto(Veiculo veiculo, String descricao, double valor) {
         veiculo.incluirCusto(descricao, valor);
-        System.out.println(String.format("\nNovo custo adicionado no veículo. \nDescrição: %s \nValor: %.2f", descricao, valor));
+        System.out.println(
+                String.format("\nNovo custo adicionado no veículo. \nDescrição: %s \nValor: %.2f", descricao, valor));
     }
 
     /**
@@ -169,7 +196,8 @@ public class PeNaEstrada {
     }
 
     /**
-     * Método retorna as rotas pela data 
+     * Método retorna as rotas pela data
+     * 
      * @param data A data desejada para buscar nas rotas
      */
     public static void listaRotasPorData(Date data) {
@@ -203,29 +231,30 @@ public class PeNaEstrada {
         System.out.println("Lista de veículos com custos gerados em ordem decrescente: ");
 
         listaVeiculos.stream()
-                    .sorted(Comparator.comparingDouble(Veiculo::getCustosGerados).reversed())   ////X1 should be class name
-                    .filter(v -> v.getCustosGerados() >= 1)
-                    .forEach(v -> System.out.println("\n------------" +
-                    "\nVeiculo: " + v.getPlaca() +
-                    "\nCusto Gerado: " + v.getCustosGerados() +
-                    "\n------------"));
+                .sorted(Comparator.comparingDouble(Veiculo::getCustosGerados).reversed()) //// X1 should be class name
+                .filter(v -> v.getCustosGerados() >= 1)
+                .forEach(v -> System.out.println("\n------------" +
+                        "\nVeiculo: " + v.getPlaca() +
+                        "\nCusto Gerado: " + v.getCustosGerados() +
+                        "\n------------"));
     }
 
-    /** 
+    /**
      * Método para abaster o veículo
-     * @param veiculo Veiculo deseja para abastecer
+     * 
+     * @param veiculo       Veiculo deseja para abastecer
      * @param tpCombustivel Tipo do combustivel para abastecer
      */
     public static void abastecerVeiculo(Veiculo veiculo, TCombustivel tpCombustivel) {
         try {
             if (validaCombustivelVeiculo(veiculo, tpCombustivel)) {
                 veiculo.tanque.completarTanque();
-                System.out.println("\nTanque completo"+
-                "\nTipo de combustivel:"+ veiculo.tanque.getTCombustivel()+
-                "\nQuantidade adicionada:"+ veiculo.tanque.combustivelAdd()+
-                "\nValor do abastecimento:"+ veiculo.tanque.valorAbastecimento()+
-                "\nQuilometros totais percorríveis com o tanque cheio: "+ veiculo.tanque.kmPercorridosCombustivelTotal()
-                );
+                System.out.println("\nTanque completo" +
+                        "\nTipo de combustivel:" + veiculo.tanque.getTCombustivel() +
+                        "\nQuantidade adicionada:" + veiculo.tanque.combustivelAdd() +
+                        "\nValor do abastecimento:" + veiculo.tanque.valorAbastecimento() +
+                        "\nQuilometros totais percorríveis com o tanque cheio: "
+                        + veiculo.tanque.kmPercorridosCombustivelTotal());
             }
         } catch (CombustivelException e) {
             System.out.println(e.getMessage());
@@ -234,7 +263,6 @@ public class PeNaEstrada {
         }
     }
 
-    
     private static boolean validaCombustivelVeiculo(Veiculo v, TCombustivel tpCombustivel) throws Exception {
         boolean valido = false;
         if (v.retornaCombustivelVeiculo().indexOf(tpCombustivel) == -1)
