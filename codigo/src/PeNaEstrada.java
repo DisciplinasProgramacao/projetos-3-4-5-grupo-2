@@ -21,16 +21,23 @@ public class PeNaEstrada {
      * @return Retorna o veículo desejado, se ele existir
      */
     public static Veiculo localizarVeiculo(String placa) {
-
         Veiculo veiculoProcurado = null;
 
-        for (int i = 0; i < listaVeiculos.size(); i++) {
-            if (listaVeiculos.get(i).getPlaca().equals(placa)) {
-                veiculoProcurado = listaVeiculos.get(i);
-                break;
+        try{
+    
+            for (int i = 0; i < listaVeiculos.size(); i++) {
+                if (listaVeiculos.get(i).getPlaca().equals(placa)) {
+                    veiculoProcurado = listaVeiculos.get(i);
+                    break;
+                }
             }
+       
         }
-        return veiculoProcurado;
+        catch(NullPointerException ex){
+            System.out.println("Veículo não foi encontrado, reveja os dados");
+        }
+
+         return veiculoProcurado;
     }
 
     /**
@@ -209,6 +216,7 @@ public class PeNaEstrada {
                                 "\nKM da rota: " + r.getKmRota() +
                                 "\nData: " + r.getDate() +
                                 "\n------------")));
+
     }
 
     /**

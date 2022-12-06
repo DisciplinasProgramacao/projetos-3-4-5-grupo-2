@@ -1,3 +1,4 @@
+import java.security.InvalidAlgorithmParameterException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -246,32 +247,52 @@ public class App {
         System.out.println("Veiculo criado com sucesso:"+ PeNaEstrada.localizarVeiculo(placaVeiculo).dadosVeiculo());
     }
 
-    private static void buscarRotasPorData() throws ParseException {
+    private static void buscarRotasPorData() {
         Date data = capturarData("Digite a data para a busca. (Digite no formato dd/MM/AAAA)");
         PeNaEstrada.listaRotasPorData(data);
     }
 
 
-    private static void addRota(String placaVeiculo) throws ParseException {
+    private static void addRota(String placaVeiculo) {
         Date date = capturarData("\nEm qual data a rota será executada? (Digite no formato dd/MM/AAAA)");
         System.out.println("\nQuantos quilômetros de rota?");
-        double km = teclado.nextDouble();
-        PeNaEstrada.addRota(date, PeNaEstrada.localizarVeiculo(placaVeiculo), km);
+        
+        try {
+            double km = teclado.nextDouble();
+            PeNaEstrada.addRota(date, PeNaEstrada.localizarVeiculo(placaVeiculo), km);
+        } catch (InputMismatchException ime) {
+            System.out.println("Valor dos quilometros deve ser decimal.");
+            
+        } 
     }
 
     private static void addCusto(String placaVeiculo) {
         System.out.println("\nDigite a descrição do custo");
         String descricao = teclado.nextLine();
         System.out.println("\nDigite o valor do custo");
-        double valor = teclado.nextDouble();
-        PeNaEstrada.addCusto(PeNaEstrada.localizarVeiculo(placaVeiculo), descricao, valor);
+        
+        try {
+            double valor = teclado.nextDouble();
+            PeNaEstrada.addCusto(PeNaEstrada.localizarVeiculo(placaVeiculo), descricao, valor);
+        } catch (InputMismatchException ime) {
+            System.out.println("Valor do custo deve ser decimal.");
+        }
     }
 
-    private static Date capturarData(String mensagem) throws ParseException {
+    private static Date capturarData(String mensagem)  {
         System.out.println(mensagem);
-        String data = teclado.nextLine();
+        String data = teclado.nextLine();;
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        return formatter.parse(data);
+        Date dataFormatada = null;
+
+        try {
+            dataFormatada = formatter.parse(data);
+        } catch (ParseException pe) {
+            System.out.println("Formato de data invalida.");
+            capturarData(mensagem);
+        }
+
+        return dataFormatada;
     }
     // #endregion
 
