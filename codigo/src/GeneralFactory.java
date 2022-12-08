@@ -7,11 +7,10 @@ public class GeneralFactory {
         switch (dados.toLowerCase()){
             case "carro": return new Carro(dados);
             case "caminhao": return new Caminhao(dados);
-            case "utilitario": return new Utilitario(dados); //concatenar
-            default: throw new InvalidAttributeValueException("Tipo de comida inexistente");
+            case "van": return new Utilitario(dados, TUtilitario.VAN ); //concatenar
+            case "furgao": return new Utilitario(dados, TUtilitario.FURGAO);
+            default: throw new InvalidAttributeValueException("Tipo de veiculo inexistente");
         }
     }   
 }
-    
-    
-}
+
