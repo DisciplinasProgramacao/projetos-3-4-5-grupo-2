@@ -41,44 +41,35 @@ public class PeNaEstrada {
     }
 
     /**
-     * Método para carregar os veículos do arquivo de texto
+     * Método para criar os diferentes tipos de veículos
      * 
-     * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos
-     *                    veículos
+     * @param dadosVeiculo Linha de dados do arquivo
      */
-    public static void carregarDadosVeiculo(String caminho) {
-        try {
-            Path path = Paths.get(caminho.concat("/Veiculos.txt"));
-            Scanner sc = new Scanner(path, "UTF-8");
-            while (sc.hasNextLine()) {
-                String linha = sc.nextLine();
+    public static void adicionaVeiculo(String dadosVeiculo) {
 
-                adicionaVeiculo(linha);
-            }
-            sc.close();
-        } catch (IOException io) {
-            System.out.println("Erro ao abrir arquivo");
-        }
-    }
+        listaVeiculos.add(newVeiculo);
 
-    /**
-     * Método para salvar os veículos
-     * 
-     * @param caminhoArquivo Caminho do arquivo de texto onde os objetos serão
-     *                       salvos
-     * @throws IOException
-     */
-    public void salvar(String caminhoArquivo) throws IOException {
+        // Veiculo newVeiculo = null;
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo));
-        Veiculo[] veiculo = new Veiculo[listaVeiculos.size()];
+        // if (dadosVeiculo.contains("Carro")) {
 
-        for (int i = 0; i < listaVeiculos.size(); i++) {
-            bw.write(veiculo[i].toString());
-            bw.newLine();
-        }
+        //     FactoryCarro addCarro = null;
+        //     newVeiculo = addCarro.create(dadosVeiculo, null);
 
-        bw.close();
+        // } else if (dadosVeiculo.contains("Caminhao")) {
+
+        //     FactoryCaminhao addCaminhao = null;
+        //     newVeiculo = addCaminhao.create(dadosVeiculo, null);
+
+        // } else {
+        //     FactoryUtilitario addUtilitario = null;
+
+        //     if (dadosVeiculo.contains("Van")) {
+        //         newVeiculo = addUtilitario.create(dadosVeiculo, TUtilitario.VAN);
+        //     } else {
+        //         newVeiculo = addUtilitario.create(dadosVeiculo, TUtilitario.FURGAO);
+        //     }
+        // }
     }
 
     /**
@@ -113,49 +104,6 @@ public class PeNaEstrada {
         }
 
         return tipoVeiculo;
-    }
-
-    /**
-     * Método para criar os diferentes tipos de veículos
-     * 
-     * @param dadosVeiculo Linha de dados do arquivo
-     */
-    public static void adicionaVeiculo(String dadosVeiculo) {
-
-        Veiculo newVeiculo = null;
-
-        if (dadosVeiculo.contains("Carro")) {
-
-            FactoryCarro addCarro = null;
-            newVeiculo = addCarro.create(dadosVeiculo, null);
-
-        } else if (dadosVeiculo.contains("Caminhao")) {
-            FactoryCaminhao addCaminhao = null;
-            newVeiculo = addCaminhao.create(dadosVeiculo, null);
-
-        } else {
-            FactoryUtilitario addUtilitario = null;
-
-            if (dadosVeiculo.contains("Van")) {
-                newVeiculo = addUtilitario.create(dadosVeiculo, TUtilitario.VAN);
-            } else {
-                newVeiculo = addUtilitario.create(dadosVeiculo, TUtilitario.FURGAO);
-            }
-        }
-        listaVeiculos.add(newVeiculo);
-
-        // Veiculo newVeiculo = null;
-
-        // if (dadosVeiculo.contains("Carro")) {
-        // newVeiculo = new Carro(dadosVeiculo);
-        // } else if (dadosVeiculo.contains("Caminhao")) {
-        // newVeiculo = new Caminhao(dadosVeiculo);
-        // } else if (dadosVeiculo.contains("Van")) {
-        // newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.VAN);
-        // } else
-        // newVeiculo = new Utilitario(dadosVeiculo, TUtilitario.FURGAO);
-
-        // listaVeiculos.add(newVeiculo);
     }
 
     /**
@@ -226,7 +174,7 @@ public class PeNaEstrada {
         double mediaRotas = listaVeiculos.stream()
                 .mapToDouble(Veiculo::totalRotas)
                 .average()
-                .getAsDouble();
+                .orElse(0);
 
         System.out.println("\nMédia de rotas realizadas pela empresa em km " + mediaRotas);
     }
@@ -280,5 +228,11 @@ public class PeNaEstrada {
 
         return valido;
     }
+
+    public static LinkedList<Veiculo> getListaVeiculos() {
+        return listaVeiculos;
+    }
+
+    
 
 }

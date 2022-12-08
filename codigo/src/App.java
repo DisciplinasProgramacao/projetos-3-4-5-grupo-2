@@ -1,3 +1,8 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.InvalidAlgorithmParameterException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,13 +14,13 @@ public class App {
 
     // #region variáveis auxiliares
     private static Scanner teclado = new Scanner(System.in, "UTF-8");
-    private static String caminho = "C:/Users/danie/OneDrive/Área de Trabalho/PUC/PM/LAB/projetos-3-4-5-grupo-2";
+    private static String caminho = "C:/SoftwareEngCodes/PUC/Lab Prog Modular/projetos-3-4-5-grupo-2";
     // #endregion
 
     public static void main(String[] args) throws Exception {
         Scanner teclado = new Scanner(System.in, "UTF-8");
 
-        PeNaEstrada.carregarDadosVeiculo(caminho);
+        carregarDadosVeiculo(caminho);
 
         int opcao;
 
@@ -46,6 +51,52 @@ public class App {
         } while (opcao != 0);
         teclado.close();
 
+    }
+
+    public static Veiculo criarVeiculo(String veiculoDescricao) throws Exception{
+    
+        //fazero switch case sem a coleção, abstração é o carai
+
+    }
+    
+    /**
+     * Método para carregar os veículos do arquivo de texto
+     * 
+     * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos
+     *                    veículos
+     */
+    public static void carregarDadosVeiculo(String caminho) {
+        try {
+            Path path = Paths.get(caminho.concat("/Veiculos.txt"));
+            Scanner sc = new Scanner(path, "UTF-8");
+            while (sc.hasNextLine()) {
+                String linha = sc.nextLine();
+                criarVeiculo(linha);
+            }
+            sc.close();
+        } catch (IOException io) {
+            System.out.println("Erro ao abrir arquivo");
+        }
+    }
+
+    /**
+     * Método para salvar os veículos
+     * 
+     * @param caminhoArquivo Caminho do arquivo de texto onde os objetos serão
+     *                       salvos
+     * @throws IOException
+     */
+    public void salvar(String caminhoArquivo) throws IOException {
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo));
+        Veiculo[] veiculo = new Veiculo[PeNaEstrada.getListaVeiculos().size()];
+
+        for (int i = 0; i < PeNaEstrada.getListaVeiculos().size(); i++) {
+            bw.write(veiculo[i].toString());
+            bw.newLine();
+        }
+
+        bw.close();
     }
 
     private static void menuAbastecimento(String placaVeiculo) {

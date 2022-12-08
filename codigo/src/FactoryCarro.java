@@ -1,7 +1,7 @@
 public class FactoryCarro implements IFactory {
     
     @Override
-    public Veiculo create(String dadosVeiculo, TUtilitario tipoUtilitario) {
+    public Veiculo create(String dadosVeiculo) {
         return new Carro(dadosVeiculo);
     }
 }
