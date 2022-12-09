@@ -1,7 +1,13 @@
 import javax.management.InvalidAttributeValueException;
 
 public class GeneralFactory {
-    
+
+    /**
+     * Método para chamar as fábricas adquadas dos véiculos
+     * @param dados Dados para a criação do veículo
+     * @return Veículo do tipo necessário
+     * @throws InvalidAttributeValueException
+     */
     static Veiculo criarVeiculo(String dados) throws InvalidAttributeValueException{
 
         String[] splitDados = dados.split(";");
