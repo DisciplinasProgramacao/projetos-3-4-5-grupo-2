@@ -21,10 +21,16 @@ public class Utilitario extends Veiculo{
         return calcularAlinhamento() + calcularVistoria();
     }
 
+    /**
+     * Método para alinhamento
+     */
     private double calcularAlinhamento() {
         return (kmRodados/10000.0) * TCustosFixos.UTILITARIO.getAlinhamento();
     };
     
+    /**
+     * Método para calcular o valor da vistoria
+     */
     private double calcularVistoria() {
         return (kmRodados/10000.0) * TCustosFixos.UTILITARIO.getVistoria();
     };

@@ -3,13 +3,16 @@ public enum TCustosFixos {
     CAMINHAO(0.03, 0.02, 2000, 0, 1000, 1000),
     UTILITARIO(0.01, 0.03, 120, 120, 0, 500);
 
+    //#region - Atributos 
     private double ipva;
     private double seguroTaxa;
     private int seguroFixo;
     private int alinhamento;
     private int manutencao;
     private int vistoria;
+    //#endregion
 
+    //#region - Construtor
     private TCustosFixos(double ipva, double seguroTaxa, int seguroFixo, int alinhamento, int manutencao,
             int vistoria) {
         this.ipva = ipva;
@@ -19,7 +22,9 @@ public enum TCustosFixos {
         this.manutencao = manutencao;
         this.vistoria = vistoria;
     }
-
+    //#endregion
+    
+    //#region - Métodos
     public double getIpva() {
         return ipva;
     }
@@ -44,5 +49,5 @@ public enum TCustosFixos {
         return vistoria;
     }
 
-    
+    //#endregion
 }
