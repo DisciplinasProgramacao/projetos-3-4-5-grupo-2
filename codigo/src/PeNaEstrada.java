@@ -181,15 +181,17 @@ public class PeNaEstrada {
     public static void abastecerVeiculo(Veiculo veiculo, TCombustivel tpCombustivel) {
         try {
             if (validaCombustivelVeiculo(veiculo, tpCombustivel)) {
-                veiculo.tanque.completarTanque();
+
                 veiculo.tanque.setTCombustivel(tpCombustivel);
-                
+
                 System.out.println("\nTanque completo" +
                         "\nTipo de combustivel:" + veiculo.tanque.getTCombustivel() +
                         "\nQuantidade adicionada:" + veiculo.tanque.combustivelAdd() +
                         "\nValor do abastecimento:" + veiculo.tanque.valorAbastecimento() +
                         "\nQuilometros totais percorríveis com o tanque cheio: "
                         + veiculo.tanque.kmPercorridosCombustivelTotal());
+
+                veiculo.tanque.completarTanque();
             }
         } catch (CombustivelException e) {
             System.out.println(e.getMessage());

@@ -9,7 +9,7 @@ public class Caminhao extends Veiculo{
      * @param dadosCaminhao Linha de dados proveniente do arquivo.
      */
     public Caminhao(String dadosCaminhao) {
-        super(dadosCaminhao, CAPACIDADETANQUE, TCombustivel.DIESEL);
+        super(dadosCaminhao, CAPACIDADETANQUE);
     }
     //#endregion
 

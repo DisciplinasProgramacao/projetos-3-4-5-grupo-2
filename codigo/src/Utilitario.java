@@ -9,7 +9,7 @@ public class Utilitario extends Veiculo{
      * @param dadosUtilitario Linha de dados 
      */
     public Utilitario(String dados, TUtilitario tipoUtilitario) {
-        super(dados, tipoUtilitario.tanque(), TCombustivel.DIESEL);
+        super(dados, tipoUtilitario.tanque());
         this.tanqueMax = tipoUtilitario.tanque();
     }
     //#region - Métodos

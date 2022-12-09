@@ -8,10 +8,10 @@ public class Tanque {
     private static final double COMBUSTIVEL_INICIAL = 0.0;
  
 
-    public Tanque(double capacidadeMax, TCombustivel tCombustivel) {
+    public Tanque(double capacidadeMax) {
         this.capacidadeMax = capacidadeMax;
         this.combustivelAtual = COMBUSTIVEL_INICIAL;
-        this.tCombustivel = tCombustivel;
+        this.tCombustivel = null;
     }
 
     public double kmPercorridosCombustivelAtual(){

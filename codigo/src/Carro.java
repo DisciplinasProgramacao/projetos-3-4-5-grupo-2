@@ -7,7 +7,7 @@ public class Carro extends Veiculo{
      * Método construtor do carro o método construtor da classe veículo
      */
     public Carro(String dadosCarro) {
-        super(dadosCarro, CAPACIDADE_TANQUE, TCombustivel.GASOLINA);
+        super(dadosCarro, CAPACIDADE_TANQUE);
     }
     //#endregion
     
