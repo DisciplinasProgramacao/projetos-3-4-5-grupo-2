@@ -94,7 +94,10 @@ public class App {
 
         bw.close();
     }
-
+    /**
+     * Menu para abastecimento do veículo
+     * @param placaVeiculo placa do Veículo
+     */
     private static void menuAbastecimento(String placaVeiculo) {
         TCombustivel tpCombustivel = null;
         
@@ -228,6 +231,10 @@ public class App {
         teclado.nextLine();
     }
 
+    /**
+     * Método para pegar os dados do usuário
+     * @return o valor ou null caso haja uma exeção
+     */
     public static String digitarDados() {
         System.out.println();
         try {
@@ -268,6 +275,10 @@ public class App {
         }
     }
 
+    /**
+     * Método para mopstar os custos totais 
+     * @param placa Placa do veículo
+     */
     private static void custosTotais(String placa) {
         PeNaEstrada.localizarVeiculo(placa).tipoDeCusto();
 
@@ -275,10 +286,18 @@ public class App {
         System.out.println("R$" + PeNaEstrada.localizarVeiculo(placa).getCustosGerados());
     }
 
+    /**
+     * Método para buscar um veículo
+     * @param placa Placa do veículo
+     */
     private static void buscarVeiculo(String placa) {
         System.out.println(PeNaEstrada.localizarVeiculo(placa).dadosVeiculo());
     }
 
+    /**
+     * Método para adicionar um veículo a frota
+     * @throws InvalidAttributeValueException
+     */
     private static void addVeiculo() throws InvalidAttributeValueException {
         int veiculoEscolhido = menuSelecaoVeiculo();
         System.out.println(" PéNaEstrada - O seu administrador de veículos");
@@ -295,12 +314,18 @@ public class App {
         System.out.println("Veiculo criado com sucesso:"+ PeNaEstrada.localizarVeiculo(placaVeiculo).dadosVeiculo());
     }
 
+    /**
+     * Método para buscar rotas por data
+     */
     private static void buscarRotasPorData() {
         Date data = capturarData("Digite a data para a busca. (Digite no formato dd/MM/AAAA)");
         PeNaEstrada.listaRotasPorData(data);
     }
 
-
+    /**
+     * Método para adicionar rota
+     * @param placaVeiculo Placa do veículo
+     */
     private static void addRota(String placaVeiculo) {
         Date date = capturarData("\nEm qual data a rota será executada? (Digite no formato dd/MM/AAAA)");
         System.out.println("\nQuantos quilômetros de rota?");
@@ -314,6 +339,10 @@ public class App {
         } 
     }
 
+    /**
+     * Método para adicionar custos a um veículo da frota
+     * @param placaVeiculo Placa do veículo
+     */
     private static void addCusto(String placaVeiculo) {
         System.out.println("\nDigite a descrição do custo");
         String descricao = teclado.nextLine();
@@ -326,7 +355,11 @@ public class App {
             System.out.println("Valor do custo deve ser decimal.");
         }
     }
-
+    /**
+     * Método para capturar a data
+     * @param mensagem Mensagem a ser registrada
+     * @return data formatada dd/mm/yyyyy
+     */
     private static Date capturarData(String mensagem)  {
         System.out.println(mensagem);
         String data = teclado.nextLine();;

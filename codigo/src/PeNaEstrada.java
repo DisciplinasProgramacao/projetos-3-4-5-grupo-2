@@ -200,6 +200,13 @@ public class PeNaEstrada {
         }
     }
 
+    /**
+     * Método para validar o combustível do veículo
+     * @param v O veículo desejado
+     * @param tpCombustivel O tipo de combustível
+     * @return Verdadeiro ou Falso 
+     * @throws Exception Caso o veículo seja abastecido com o tipo incorreto
+     */
     private static boolean validaCombustivelVeiculo(Veiculo v, TCombustivel tpCombustivel) throws Exception {
         boolean valido = false;
         if (v.retornaCombustivelVeiculo().indexOf(tpCombustivel) == -1)
