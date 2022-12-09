@@ -1,5 +1,6 @@
 public enum TCombustivel {
     
+    //#region - Atributos
     GASOLINA(12, 4.80),
     ETANOL(8, 3.65),
     DIESEL(3.5, 6.65);
@@ -7,6 +8,9 @@ public enum TCombustivel {
     private double consumoMedio;
     private double preco;
 
+    //#endregion
+
+    //#region - Métodos
     private TCombustivel(double consumoMedio, double preco) {
         this.consumoMedio = consumoMedio;
         this.preco = preco;
@@ -28,5 +32,5 @@ public enum TCombustivel {
         this.preco = preco;
     }
 
-
+    //#endregion
 }

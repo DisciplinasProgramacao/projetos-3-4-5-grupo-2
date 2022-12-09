@@ -56,6 +56,10 @@ public abstract class Veiculo implements Comparable<Veiculo> {
         retornaCustosTotais(tipoVeiculo);
     }
     
+    /**
+     * Método para retornar os custos totais de um Veículo
+     * @param tipoVeiculo Tipo do veículo
+     */
     public void retornaCustosTotais(TCustosFixos tipoVeiculo) {  
 
         double custoIpva = (double) valorDeVenda * tipoVeiculo.getIpva();
@@ -82,10 +86,15 @@ public abstract class Veiculo implements Comparable<Veiculo> {
         return toString();
     }
 
-    public int maiorQuantRotas(Veiculo o) {
-        if (this.rotas.size() < o.rotas.size())
+    /**
+     * Método para calcular a maior quantidade de rotas feitas por um veículo
+     * @param v Veículo
+     * @return
+     */
+    public int maiorQuantRotas(Veiculo v) {
+        if (this.rotas.size() < v.rotas.size())
             return 1;
-        else if (this.rotas.size()> o.rotas.size())
+        else if (this.rotas.size()> v.rotas.size())
             return -1;
         return 0;
     }
@@ -121,6 +130,9 @@ public abstract class Veiculo implements Comparable<Veiculo> {
                 .sum();
     }
 
+    /**
+     * Método para retornar o combustível do Veículo
+     */
     public LinkedList<TCombustivel> retornaCombustivelVeiculo(){
         LinkedList<TCombustivel> combustiveis = new LinkedList<TCombustivel>();
 
