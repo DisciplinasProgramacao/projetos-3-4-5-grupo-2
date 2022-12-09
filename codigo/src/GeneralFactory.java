@@ -3,14 +3,17 @@ import javax.management.InvalidAttributeValueException;
 public class GeneralFactory {
     
     static Veiculo criarVeiculo(String dados) throws InvalidAttributeValueException{
+
+        String[] splitDados = dados.split(";");
+        String tipoVeiculo = splitDados[0];
         
-        switch (dados.toLowerCase()){
-            case "carro": return new Carro(dados);
-            case "caminhao": return new Caminhao(dados);
-            case "van": return new Utilitario(dados, TUtilitario.VAN ); //concatenar
-            case "furgao": return new Utilitario(dados, TUtilitario.FURGAO);
+        switch (tipoVeiculo.toLowerCase()) {
+            case "carro": return new FactoryCarro().create(dados);
+            case "caminhao": return new FactoryCaminhao().create(dados);
+            case "van": return new FactoryVan().create(dados); 
+            case "furgao": return new FactoryFurgao().create(dados);
             default: throw new InvalidAttributeValueException("Tipo de veiculo inexistente");
         }
-    }   
+    }
 }
 

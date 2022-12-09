@@ -45,31 +45,8 @@ public class PeNaEstrada {
      * 
      * @param dadosVeiculo Linha de dados do arquivo
      */
-    public static void adicionaVeiculo(String dadosVeiculo) {
-
-        listaVeiculos.add(newVeiculo);
-
-        // Veiculo newVeiculo = null;
-
-        // if (dadosVeiculo.contains("Carro")) {
-
-        //     FactoryCarro addCarro = null;
-        //     newVeiculo = addCarro.create(dadosVeiculo, null);
-
-        // } else if (dadosVeiculo.contains("Caminhao")) {
-
-        //     FactoryCaminhao addCaminhao = null;
-        //     newVeiculo = addCaminhao.create(dadosVeiculo, null);
-
-        // } else {
-        //     FactoryUtilitario addUtilitario = null;
-
-        //     if (dadosVeiculo.contains("Van")) {
-        //         newVeiculo = addUtilitario.create(dadosVeiculo, TUtilitario.VAN);
-        //     } else {
-        //         newVeiculo = addUtilitario.create(dadosVeiculo, TUtilitario.FURGAO);
-        //     }
-        // }
+    public static void adicionaVeiculo(Veiculo novoVeiculo) {
+        listaVeiculos.add(novoVeiculo);
     }
 
     /**

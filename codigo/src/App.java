@@ -3,12 +3,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.InvalidAlgorithmParameterException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.management.InvalidAttributeValueException;
 
 public class App {
 
@@ -52,26 +53,22 @@ public class App {
         teclado.close();
 
     }
-
-    public static Veiculo criarVeiculo(String veiculoDescricao) throws Exception{
-    
-        //fazero switch case sem a coleção, abstração é o carai
-
-    }
     
     /**
      * Método para carregar os veículos do arquivo de texto
      * 
      * @param nomeArquivo - Nome do arquivo que será lido os dados referentes aos
      *                    veículos
+     * @throws InvalidAttributeValueException
      */
-    public static void carregarDadosVeiculo(String caminho) {
+    public static void carregarDadosVeiculo(String caminho) throws InvalidAttributeValueException {
         try {
             Path path = Paths.get(caminho.concat("/Veiculos.txt"));
             Scanner sc = new Scanner(path, "UTF-8");
             while (sc.hasNextLine()) {
                 String linha = sc.nextLine();
-                criarVeiculo(linha);
+                Veiculo newVeiculo = GeneralFactory.criarVeiculo(linha);
+                PeNaEstrada.adicionaVeiculo(newVeiculo);
             }
             sc.close();
         } catch (IOException io) {
@@ -283,7 +280,7 @@ public class App {
         System.out.println(PeNaEstrada.localizarVeiculo(placa).dadosVeiculo());
     }
 
-    private static void addVeiculo() {
+    private static void addVeiculo() throws InvalidAttributeValueException {
         int veiculoEscolhido = menuSelecaoVeiculo();
         System.out.println(" PéNaEstrada - O seu administrador de veículos");
         System.out.println("========================================");
@@ -294,7 +291,8 @@ public class App {
         System.out.println("\nInsira a quantidade de km rodados do veículo:\n");
         String valorKmRodados = digitarDados();
         String dadosNovoVeiculo = PeNaEstrada.gerarString(veiculoEscolhido, placaVeiculo, valorDeVenda, valorKmRodados);
-        PeNaEstrada.adicionaVeiculo(dadosNovoVeiculo);
+        Veiculo addVeiculo = GeneralFactory.criarVeiculo(dadosNovoVeiculo);
+        PeNaEstrada.adicionaVeiculo(addVeiculo);
         System.out.println("Veiculo criado com sucesso:"+ PeNaEstrada.localizarVeiculo(placaVeiculo).dadosVeiculo());
     }
 
