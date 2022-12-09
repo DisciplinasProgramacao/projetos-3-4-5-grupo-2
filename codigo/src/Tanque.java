@@ -5,10 +5,12 @@ public class Tanque {
     private double capacidadeMax;
     private double combustivelAtual;
     private TCombustivel tCombustivel;
+    private static final double COMBUSTIVEL_INICIAL = 0.0;
+ 
 
-    public Tanque(double capacidadeMax, double combustivelAtual, TCombustivel tCombustivel) {
+    public Tanque(double capacidadeMax, TCombustivel tCombustivel) {
         this.capacidadeMax = capacidadeMax;
-        this.combustivelAtual = combustivelAtual;
+        this.combustivelAtual = COMBUSTIVEL_INICIAL;
         this.tCombustivel = tCombustivel;
     }
 
@@ -54,5 +56,11 @@ public class Tanque {
     public TCombustivel getTCombustivel() {
         return tCombustivel;
     }
+
+    public void setTCombustivel(TCombustivel tCombustivel) {
+        this.tCombustivel = tCombustivel;
+    }
+
+    
 
 }

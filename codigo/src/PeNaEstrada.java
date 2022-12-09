@@ -182,6 +182,8 @@ public class PeNaEstrada {
         try {
             if (validaCombustivelVeiculo(veiculo, tpCombustivel)) {
                 veiculo.tanque.completarTanque();
+                veiculo.tanque.setTCombustivel(tpCombustivel);
+                
                 System.out.println("\nTanque completo" +
                         "\nTipo de combustivel:" + veiculo.tanque.getTCombustivel() +
                         "\nQuantidade adicionada:" + veiculo.tanque.combustivelAdd() +
